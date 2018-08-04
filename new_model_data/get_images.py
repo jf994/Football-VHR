@@ -13,10 +13,8 @@ headers = {'User-Agent': 'Chrome/41.0.2228.0 Safari/537.36'}
 def get_links(search_name,num_page):
     search_name = search_name.replace(' ', '+')
     url = url_base.format(search_name, num_page)
-    print(url)
     request = ulib.Request(url, None, headers)
     json_string = ulib.urlopen(request).read()
-    print(json_string)
     new_soup = Soup(json_string, 'lxml')
     images = new_soup.find_all('img')
     links = [image['src'] for image in images]
