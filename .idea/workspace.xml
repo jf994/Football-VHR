@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be4767cf-0394-4ac0-a1e0-849ca33590a4" name="Default Changelist" comment="" />
+    <list default="true" id="be4767cf-0394-4ac0-a1e0-849ca33590a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/get_images.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_model_data/get_images.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000002.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000006.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000007.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000008.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000009.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000010.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000011.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000012.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000013.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000014.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000015.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000016.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000017.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000018.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/referee/000019.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/rename.py" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +109,24 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-960195957">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="454" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="454" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -100,19 +143,11 @@
         <entry file="file://$PROJECT_DIR$/new_model_data/get_images.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
+                <marker date="1533372939581" expanded="true" signature="1185:1585" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/new_model_data/rename.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -136,6 +171,9 @@
       <find>**cfg</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -146,11 +184,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1298" />
-    <option name="y" value="-40" />
-    <option name="width" value="1168" />
-    <option name="height" value="1096" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="3829" />
+    <option name="y" value="-11" />
+    <option name="width" value="1622" />
+    <option name="height" value="1163" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -161,12 +199,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="YOLOv2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YOLOv2" type="462c0819:PsiDirectoryNode" />
+              <item name="SKY-YOLOv2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SKY-YOLOv2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="YOLOv2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YOLOv2" type="462c0819:PsiDirectoryNode" />
+              <item name="SKY-YOLOv2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SKY-YOLOv2" type="462c0819:PsiDirectoryNode" />
               <item name="new_model_data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -244,6 +282,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="rename" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="YOLOv2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/new_model_data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_model_data/rename.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="YOLOv2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -269,10 +328,12 @@
       <item itemvalue="Python.setup" />
       <item itemvalue="Python.flow" />
       <item itemvalue="Python.get_images" />
+      <item itemvalue="Python.rename" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.get_images" />
+        <item itemvalue="Python.rename" />
         <item itemvalue="Python.setup" />
         <item itemvalue="Python.flow" />
       </list>
@@ -301,19 +362,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1933" height="1053" extended-state="6" />
+    <frame x="3833" y="-7" width="1081" height="775" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.099631" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.18103448" />
       <window_info id="Structure" order="1" sideWeight="0.5010846" side_tool="true" weight="0.24986821" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47352025" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32866043" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.329718" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.329718" />
@@ -446,17 +508,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/new_model_data/rename.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/new_model_data/get_images.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <marker date="1533372939581" expanded="true" signature="1185:1585" ph="..." />
           </folding>
         </state>
       </provider>
