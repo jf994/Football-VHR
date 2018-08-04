@@ -2,7 +2,106 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be4767cf-0394-4ac0-a1e0-849ca33590a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/new_model_data/get_images.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_model_data/get_images.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000032.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000033.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000034.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000037.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000042.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000043.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000045.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000047.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000048.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000049.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000050.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000051.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000052.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000055.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000059.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000060.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000062.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000063.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000064.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000067.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000069.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000070.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000073.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000074.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000076.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000077.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000080.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000084.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000085.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000086.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000089.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000090.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000095.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000098.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000099.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000101.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000105.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000106.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000107.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000108.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000110.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000111.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000113.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000116.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000117.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000118.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000119.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000122.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000123.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000125.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000126.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000127.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000129.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000130.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000131.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000138.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000139.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000140.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000142.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000143.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000146.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000147.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000149.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000151.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000152.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000153.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000155.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000157.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000158.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000159.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000160.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000161.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000163.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000165.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000166.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000167.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000168.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000169.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000170.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000171.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000179.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000181.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000184.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000185.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000186.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000187.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000188.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000189.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000190.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000191.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000193.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000195.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000198.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_model_data/france_images/000199.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +217,14 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1920727339">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -137,7 +244,6 @@
               <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1533391094395" expanded="true" signature="1147:1547" ph="..." />
               </folding>
             </state>
           </provider>
@@ -158,7 +264,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/new_model_data/generate_xml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
+            <state relative-caret-position="833">
               <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -202,27 +308,16 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="3866" />
-    <option name="height" value="2106" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="YOLOv2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,6 +329,17 @@
               <item name="SKY-YOLOv2" type="b2602c69:ProjectViewProjectNode" />
               <item name="SKY-YOLOv2" type="462c0819:PsiDirectoryNode" />
               <item name="new_model_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="YOLOv2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -402,9 +508,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1933" height="1053" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="840" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.099631" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989154" visible="true" weight="0.09914078" />
       <window_info id="Structure" order="1" sideWeight="0.5010846" side_tool="true" weight="0.24986821" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -539,6 +645,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/new_model_data/rename.py" />
+    <entry file="file://$PROJECT_DIR$/new_model_data/annotations/000000.xml" />
     <entry file="file://$PROJECT_DIR$/darkflow/net/build.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2346">
@@ -546,23 +653,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/new_model_data/generate_xml.py">
+    <entry file="file://$PROJECT_DIR$/new_model_data/draw_box.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
+        <state relative-caret-position="68">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/new_model_data/annotations/000000.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new_model_data/draw_box.py">
+    <entry file="file://$PROJECT_DIR$/new_model_data/generate_xml.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        <state relative-caret-position="833">
+          <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -575,7 +679,6 @@
           <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1533391094395" expanded="true" signature="1147:1547" ph="..." />
           </folding>
         </state>
       </provider>
