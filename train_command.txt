@@ -1,0 +1,1 @@
+python flow --model cfg/tiny-yolo-voc-1c.cfg --load bin/tiny-yolo-voc.weights --train --annotation new_model_data/annotations --dataset new_model_data/croatia --gpu 1.0 --epoch 600
