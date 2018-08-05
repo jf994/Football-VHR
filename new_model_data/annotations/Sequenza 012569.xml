@@ -1,0 +1,46 @@
+<annotation>
+  <folder>croatia</folder>
+  <filename>Sequenza 012569.png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1280</width>
+    <height>720</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>croatia_player</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>703</xmin>
+      <ymin>87</ymin>
+      <xmax>930</xmax>
+      <ymax>702</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>croatia_player</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1073</xmin>
+      <ymin>36</ymin>
+      <xmax>1273</xmax>
+      <ymax>715</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>croatia_player</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>852</xmin>
+      <ymin>89</ymin>
+      <xmax>1098</xmax>
+      <ymax>712</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+  <folder>croatia</folder>
+  <filename>Sequenza 012689.png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1280</width>
+    <height>720</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>croatia_player</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>838</xmin>
+      <ymin>78</ymin>
+      <xmax>1221</xmax>
+      <ymax>715</ymax>
+    </bndbox>
+  </object>
+</annotation>

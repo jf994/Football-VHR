@@ -9,11 +9,12 @@ img = None
 tl_list = []
 br_list = []
 object_list = []
+number_photo = 1
 
 # constants
-image_folder = 'referee_images'
+image_folder = 'croatia'
 savedir = 'annotations'
-obj = 'referee'
+obj = 'croatia_player'
 
 
 def line_select_callback(clk, rls):
@@ -30,8 +31,12 @@ def onkeypress(event):
     global tl_list
     global br_list
     global img
+    global number_photo
+
     if event.key == 'q':
         print(object_list)
+        print("\n"+str(number_photo))
+        number_photo += 1
         write_xml(image_folder, img, object_list, tl_list, br_list, savedir)
         tl_list = []
         br_list = []
@@ -48,7 +53,7 @@ if __name__ == '__main__':
         img = image_file
         fig, ax = plt.subplots(1, figsize=(10.5, 8))
         mngr = plt.get_current_fig_manager()
-        mngr.window.setGeometry(250, 40, 800, 600)
+        mngr.window.setGeometry(400, 400, 2048, 1536)
         image = cv2.imread(image_file.path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         ax.imshow(image)
