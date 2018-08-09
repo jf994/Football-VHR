@@ -7,15 +7,15 @@ from create_json import writeToJSONFile
 
 option = {
     'model': 'cfg/tiny-yolo-voc-2c.cfg',
-    'load': 3375,
-    'threshold': 0.15,
+    'load': 1750,
+    'threshold': 0.4,
     'gpu': 1.0
 }
 
 frame_rate_originale = 29.88
 tfnet = TFNet(option)
 last_tag_time = 0
-capture = cv2.VideoCapture('video_cards2.mp4')
+capture = cv2.VideoCapture('portogallo.mp4')
 colors = [tuple(255 * np.random.rand(3)) for i in range(5)]
 num_frame = 0
 
@@ -39,12 +39,13 @@ while (capture.isOpened()):
         num_frame += 1
         print('FPS {:.1f}'.format(fps))
         if (time.time() - last_tag_time) > 5:
-            if sicurezza > .15:
+            if sicurezza > .4:
                 last_tag_time = time.time()
                 data = {}
                 data['event'] = label
                 data['time_sec'] = round(num_frame/frame_rate_originale)
                 data['time_hh:mm:ss'] = str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale)))
+                data['confidence'] = str(sicurezza * 100)+"%"
                 writeToJSONFile('json', str(label)+"_"+str(round(num_frame/frame_rate_originale)), data)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
