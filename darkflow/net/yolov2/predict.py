@@ -9,6 +9,7 @@ import json
 from ...utils.box import BoundBox
 from ...cython_utils.cy_yolo2_findboxes import box_constructor
 
+
 def expit(x):
 	return 1. / (1. + np.exp(-x))
 
@@ -54,7 +55,7 @@ def postprocess(self, net_out, im, save = True):
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
-		cv2.putText(imgcv, mess, (left, top - 12),
+		cv2.putText(imgcv, '{}: {:.0f}%'.format(mess, confidence * 100), (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
 
 	if not save: return imgcv

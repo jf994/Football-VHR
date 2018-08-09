@@ -12,9 +12,10 @@ object_list = []
 number_photo = 1
 
 # constants
-image_folder = 'croatia'
+image_folder = 'cards_images'
 savedir = 'annotations'
-obj = 'croatia_player'
+obj1 = 'red_card'
+obj2 = 'yellow_card'
 
 
 def line_select_callback(clk, rls):
@@ -23,7 +24,12 @@ def line_select_callback(clk, rls):
     global object_list
     tl_list.append((int(clk.xdata), int(clk.ydata)))
     br_list.append((int(rls.xdata), int(rls.ydata)))
-    object_list.append(obj)
+
+    if number_photo < 125:
+        object_list.append(obj2)
+    elif number_photo > 124:
+        object_list.append(obj1)
+
 
 
 def onkeypress(event):
