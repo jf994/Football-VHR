@@ -43,6 +43,7 @@ def onkeypress(event):
         br_list = []
         object_list = []
         img = None
+        plt.close(event.canvas.figure)
 
 
 def toggle_selector(event):
@@ -70,4 +71,4 @@ if __name__ == '__main__':
             key = plt.connect('key_press_event', onkeypress)
             plt.tight_layout()
             plt.show()
-            plt.close(fig)
+            #plt.close(fig)
