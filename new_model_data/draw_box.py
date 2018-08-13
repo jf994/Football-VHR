@@ -52,7 +52,7 @@ def toggle_selector(event):
 
 if __name__ == '__main__':
     for n, image_file in enumerate(os.scandir(image_folder)):
-        if n > 315:
+        if n > 342:
             img = image_file
             fig, ax = plt.subplots(1, figsize=(10.5, 8))
             mngr = plt.get_current_fig_manager()

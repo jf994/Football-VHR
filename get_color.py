@@ -7,11 +7,11 @@ def count_nonblack_np(img):
 
     """
     return img.any(axis=-1).sum()
-def detect_team(image, show=True):
+def detect_color(image, show=True):
     # define the list of boundaries
     boundaries = [
         ([17, 15, 100], [50, 56, 200]),  # red
-        ([25, 146, 190], [96, 174, 250])  # yellow
+        ([20, 100, 100], [30, 255, 255])  # yellow
     ]
     i = 0
     for (lower, upper) in boundaries:
@@ -26,10 +26,10 @@ def detect_team(image, show=True):
         tot_pix = count_nonblack_np(image)
         color_pix = count_nonblack_np(output)
         ratio = color_pix / tot_pix
-        print("ratio is:", ratio)
-        if ratio > 0.001 and i == 0:
+        # print("ratio is:", ratio)
+        if ratio > 0.05 and i == 0:
             return 'red'
-        elif ratio > 0.001 and i == 1:
+        elif ratio > 0.05 and i == 1:
             return 'yellow'
 
         i += 1
