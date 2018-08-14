@@ -6,6 +6,7 @@ import datetime
 from create_json import writeToJSONFile
 from get_color import detect_color
 from get_scene_change import is_new_scene
+from face_rec import get_faces
 
 option = {
     'model': 'cfg/tiny-yolo-voc-2c.cfg',
@@ -17,7 +18,7 @@ option = {
 frame_rate_originale = 25
 tfnet = TFNet(option)
 last_tag_time = 0
-capture = cv2.VideoCapture('final2006_short.mp4')
+capture = cv2.VideoCapture(0)
 num_frame = 0
 temp_num_frame = 1
 old_ratio = [0, 0, 0]
@@ -26,8 +27,10 @@ while (capture.isOpened()):
     stime = time.time()
     sicurezza = 0
     ret, frame = capture.read()
+
     #ogni 2 secondi controllo la scena
     if (temp_num_frame == (frame_rate_originale * 2)):
+
         temp = is_new_scene(frame, old_ratio)
         old_ratio[0] = temp[0]
         old_ratio[1] = temp[1]
@@ -68,7 +71,7 @@ while (capture.isOpened()):
 
             frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
             frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-
+        frame = get_faces(frame)
         cv2.imshow('frame', frame)
         fps = 1 / (time.time() - stime)
         num_frame += 1
