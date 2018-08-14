@@ -3,7 +3,8 @@ from darkflow.net.build import TFNet
 import numpy as np
 import time
 import datetime
-from create_json import writeToJSONFile
+import oologic.create_italy_france as itafra
+from oologic.event import Event
 from get_color import detect_color
 from get_scene_change import is_new_scene
 from face_rec import get_faces
@@ -23,6 +24,7 @@ num_frame = 0
 temp_num_frame = 1
 old_ratio = [0, 0, 0]
 
+match = itafra.createItaFra()
 while (capture.isOpened()):
     stime = time.time()
     sicurezza = 0
@@ -80,16 +82,13 @@ while (capture.isOpened()):
         if (time.time() - last_tag_time) > 5:
                 if sicurezza > .55:
                     last_tag_time = time.time()
-                    data = {}
-                    data['event'] = label
-                    data['time_sec'] = round(num_frame/frame_rate_originale)
-                    data['time_hh:mm:ss'] = str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale)))
-                    data['confidence'] = str(sicurezza * 100)+"%"
-                    writeToJSONFile('json', str(label)+"_"+str(round(num_frame/frame_rate_originale)), data)
+                    event1 = Event(str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale))), label, match.home_team.rooster[0])
+                    match.event_list.append(event1)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     else:
+        match.json_and_txt_create()
         capture.release()
         cv2.destroyAllWindows()
         break
