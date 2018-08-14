@@ -1,49 +1,56 @@
 import face_recognition
 import cv2
 
-
 # Load a sample picture and learn how to recognize it.
-totti_image = face_recognition.load_image_file("totti.jpg")
-totti_face_encoding = face_recognition.face_encodings(totti_image)[0]
-
-# Load a second sample picture and learn how to recognize it.
-io_image = face_recognition.load_image_file("io.jpg")
-io_face_encoding = face_recognition.face_encodings(io_image)[0]
-
-# Load a third sample picture and learn how to recognize it.
-z_image = face_recognition.load_image_file("z.jpg")
-z_face_encoding = face_recognition.face_encodings(z_image)[0]
+image = face_recognition.load_image_file("totti.jpg")
+encoding = face_recognition.face_encodings(image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    totti_face_encoding,
-    io_face_encoding,
-    z_face_encoding
+    encoding
 ]
 known_face_names = [
     "Francesco Totti",
-    "Jacopo Favaro",
-    "Fabrizio Zavanone"
 ]
+
+# Initialize some variables
+face_locations = []
+face_encodings = []
+face_names = []
+
 def get_faces(frame):
+
+    # Resize frame of video to 1/4 size for faster face recognition processing
+    small_frame = cv2.resize(frame, (0, 0), fx=0.1, fy=0.1)
+
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-    rgb_frame = frame[:, :, ::-1]
+    rgb_small_frame = small_frame[:, :, ::-1]
 
-    # Find all the faces and face enqcodings in the frame of video
-    face_locations = face_recognition.face_locations(rgb_frame)
-    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
+    # Find all the faces and face encodings in the current frame of video
+    face_locations = face_recognition.face_locations(rgb_small_frame)
+    face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
-    # Loop through each face in this frame of video
-    for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
+    face_names = []
+    for face_encoding in face_encodings:
         # See if the face is a match for the known face(s)
-        matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.50)
-
-        name = "Unknown"
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        name = "Person"
 
         # If a match was found in known_face_encodings, just use the first one.
         if True in matches:
             first_match_index = matches.index(True)
             name = known_face_names[first_match_index]
+
+        face_names.append(name)
+
+
+    # Display the results
+    for (top, right, bottom, left), name in zip(face_locations, face_names):
+        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+        top *= 10
+        right *= 10
+        bottom *= 10
+        left *= 10
 
         # Draw a box around the face
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)

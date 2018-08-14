@@ -30,6 +30,8 @@ while (capture.isOpened()):
     sicurezza = 0
     ret, frame = capture.read()
 
+    if (temp_num_frame % 3 == 0):
+        frame = get_faces(frame)
     #ogni 2 secondi controllo la scena
     if (temp_num_frame == (frame_rate_originale * 2)):
 
@@ -73,12 +75,12 @@ while (capture.isOpened()):
 
             frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
             frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-        frame = get_faces(frame)
+
         cv2.imshow('frame', frame)
         fps = 1 / (time.time() - stime)
         num_frame += 1
         temp_num_frame += 1
-        #print('FPS {:.1f}'.format(fps))
+        print('FPS {:.1f}'.format(fps))
         if (time.time() - last_tag_time) > 5:
                 if sicurezza > .55:
                     last_tag_time = time.time()
