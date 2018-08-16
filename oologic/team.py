@@ -1,9 +1,9 @@
 
 class Team:
 
-    def __init__(self, name, rooster, banch, coach):
+    def __init__(self, name, roster, banch, coach):
         self.name = name
-        self.rooster = rooster
+        self.roster = roster
         self.banch = banch
         self.coach = coach
         self.score = 0
@@ -15,9 +15,9 @@ class Team:
     def json_team(self):
         team = {}
         team["name"] = self.name
-        team["rooster"] = []
-        for player in self.rooster:
-            team["rooster"].append(player.json_person())
+        team["roster"] = []
+        for player in self.roster:
+            team["roster"].append(player.json_person())
 
         team["banch"] = []
         for player in self.banch:

@@ -1,39 +1,30 @@
 import face_recognition
 import cv2
-
-# Load a sample picture and learn how to recognize it.
-image = face_recognition.load_image_file("totti.jpg")
-totti = face_recognition.face_encodings(image)[0]
-
-image = face_recognition.load_image_file("buffon.png")
-buffon = face_recognition.face_encodings(image)[0]
-
-image = face_recognition.load_image_file("totti.jpg")
-totti_encoding = face_recognition.face_encodings(image)[0]
-
-image = face_recognition.load_image_file("totti.jpg")
-totti_encoding = face_recognition.face_encodings(image)[0]
-
-image = face_recognition.load_image_file("totti.jpg")
-totti_encoding = face_recognition.face_encodings(image)[0]
-
-# Create arrays of known face encodings and their names
-known_face_encodings = [
-    totti_encoding
-]
-known_face_names = [
-    "Francesco Totti",
-]
+import os
 
 # Initialize some variables
+known_face_encodings = []
+known_face_names = []
 face_locations = []
 face_encodings = []
 face_names = []
 
-def get_faces(frame):
 
+def get_names_from_image(team):
+    global known_face_encodings
+    global known_face_names
+    print(team.name)
+    #load all available images
+    for n, image_file in enumerate(os.scandir('img/'+team.name+"/")):
+        print(image_file.path)
+        image = face_recognition.load_image_file(image_file.path)
+        known_face_encodings.append(face_recognition.face_encodings(image)[0])
+        print(os.path.splitext(image_file)[0].split('/'))
+        known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
+
+def get_faces(frame):
     # Resize frame of video to 1/4 size for faster face recognition processing
-    small_frame = cv2.resize(frame, (0, 0), fx=0.1, fy=0.1)
+    small_frame = cv2.resize(frame, (0, 0), fx=0.125, fy=0.125)
 
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_small_frame = small_frame[:, :, ::-1]
@@ -58,18 +49,19 @@ def get_faces(frame):
 
     # Display the results
     for (top, right, bottom, left), name in zip(face_locations, face_names):
-        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-        top *= 10
-        right *= 10
-        bottom *= 10
-        left *= 10
+        if (name != 'Person'):
+            # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+            top *= 8
+            right *= 8
+            bottom *= 8
+            left *= 8
 
-        # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+            # Draw a box around the face
+            cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
 
-        # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
-        font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+            # Draw a label with a name below the face
+            cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+            font = cv2.FONT_HERSHEY_DUPLEX
+            cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
     return frame

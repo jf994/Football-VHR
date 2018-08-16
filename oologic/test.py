@@ -1,9 +1,10 @@
 from oologic.event import Event
 from oologic.create_italy_france import createItaFra
+from oologic.create_test_match import createMatch
 
 
 class Test:
-    match = createItaFra()
+    match = createMatch()
     event1 = Event("00:15:36", "Red_Card", match.guest_team.coach)
     event2 = Event("00:18:34", "Bella parata", match.home_team.rooster[0])
     event3 = Event("00:35:22", "Goal su punizione", match.home_team.rooster[6])
