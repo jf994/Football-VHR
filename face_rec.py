@@ -13,13 +13,11 @@ face_names = []
 def get_names_from_image(team):
     global known_face_encodings
     global known_face_names
-    print(team.name)
+    print("Initializing images for "+str(team.name)+"...")
     #load all available images
     for n, image_file in enumerate(os.scandir('img/'+team.name+"/")):
-        print(image_file.path)
         image = face_recognition.load_image_file(image_file.path)
         known_face_encodings.append(face_recognition.face_encodings(image)[0])
-        print(os.path.splitext(image_file)[0].split('/'))
         known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
 
 def get_faces(frame):

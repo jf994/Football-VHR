@@ -27,6 +27,7 @@ old_ratio = [0, 0, 0]
 
 get_names_from_image(match.home_team)
 get_names_from_image(match.guest_team)
+print("Done.")
 
 while (capture.isOpened()):
     stime = time.time()
