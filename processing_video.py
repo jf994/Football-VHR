@@ -20,13 +20,15 @@ match = createMatch()
 frame_rate_originale = 25
 tfnet = TFNet(option)
 last_tag_time = 0
-capture = cv2.VideoCapture('video3.mp4')
+capture = cv2.VideoCapture('final2006_short.mp4')
 num_frame = 0
 temp_num_frame = 1
 old_ratio = [0, 0, 0]
 
-get_names_from_image(match.home_team)
-get_names_from_image(match.guest_team)
+get_names_from_image(match.home_team.name)
+get_names_from_image(match.guest_team.name)
+get_names_from_image("Ref")
+
 print("Done.")
 
 while (capture.isOpened()):

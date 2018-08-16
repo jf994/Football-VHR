@@ -13,9 +13,9 @@ face_names = []
 def get_names_from_image(team):
     global known_face_encodings
     global known_face_names
-    print("Initializing images for "+str(team.name)+"...")
+    print("Initializing images for "+str(team)+"...")
     #load all available images
-    for n, image_file in enumerate(os.scandir('img/'+team.name+"/")):
+    for n, image_file in enumerate(os.scandir('img/'+team+"/")):
         image = face_recognition.load_image_file(image_file.path)
         known_face_encodings.append(face_recognition.face_encodings(image)[0])
         known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
@@ -34,7 +34,7 @@ def get_faces(frame):
     face_names = []
     for face_encoding in face_encodings:
         # See if the face is a match for the known face(s)
-        matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.50)
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.55)
         name = "Person"
 
         # If a match was found in known_face_encodings, just use the first one.
