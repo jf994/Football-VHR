@@ -3,11 +3,23 @@ import cv2
 
 # Load a sample picture and learn how to recognize it.
 image = face_recognition.load_image_file("totti.jpg")
-encoding = face_recognition.face_encodings(image)[0]
+totti = face_recognition.face_encodings(image)[0]
+
+image = face_recognition.load_image_file("buffon.png")
+buffon = face_recognition.face_encodings(image)[0]
+
+image = face_recognition.load_image_file("totti.jpg")
+totti_encoding = face_recognition.face_encodings(image)[0]
+
+image = face_recognition.load_image_file("totti.jpg")
+totti_encoding = face_recognition.face_encodings(image)[0]
+
+image = face_recognition.load_image_file("totti.jpg")
+totti_encoding = face_recognition.face_encodings(image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    encoding
+    totti_encoding
 ]
 known_face_names = [
     "Francesco Totti",
@@ -33,7 +45,7 @@ def get_faces(frame):
     face_names = []
     for face_encoding in face_encodings:
         # See if the face is a match for the known face(s)
-        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.50)
         name = "Person"
 
         # If a match was found in known_face_encodings, just use the first one.

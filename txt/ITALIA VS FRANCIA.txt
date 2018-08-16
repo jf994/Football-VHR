@@ -1,6 +1,2 @@
 FOOTBALL WORLD CUP 2006 ITALIA VS FRANCIA   060709
 FOOTBALL WORLD CUP 2006 FINAL ITALIA VS FRANCIA 0-0
-    0:05:49     yellow_card     Buffon
-    0:11:59     yellow_card     Buffon
-    0:16:50     red_card     Buffon
-    0:17:39     red_card     Buffon

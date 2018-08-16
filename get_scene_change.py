@@ -24,6 +24,8 @@ def is_new_scene(image,old_ratio):
     red_ratio = 0
     blue_ratio = 0
     green_ratio = 0
+
+    small_frame = cv2.resize(image, (0, 0), fx=0.1, fy=0.1)
     # define the list of boundaries
     boundaries = [
         ([17, 15, 100], [50, 56, 200]),  # red
@@ -38,9 +40,9 @@ def is_new_scene(image,old_ratio):
 
         # find the colors within the specified boundaries and apply
         # the mask
-        mask = cv2.inRange(image, lower, upper)
-        output = cv2.bitwise_and(image, image, mask=mask)
-        tot_pix = count_nonblack_np(image)
+        mask = cv2.inRange(small_frame, lower, upper)
+        output = cv2.bitwise_and(small_frame, small_frame, mask=mask)
+        tot_pix = count_nonblack_np(small_frame)
         color_pix = count_nonblack_np(output)
         ratio = color_pix / tot_pix
         # print("ratio is:", ratio)
