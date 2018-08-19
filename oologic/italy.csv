@@ -1,25 +1,25 @@
 Italy
 Lippi,CT
-Buffon,1,P,Gold
-Grosso,3,DS,Azur
-Cannavaro,5,DC,Azur
-Gattuso,8,CC,Azur
-Toni,9,ATT,Azur
-Totti,10,AT,Azur
-Camoranesi,16,ED,Azur
-Zambrotta,19,TD,Azur
-Perrotta,20,ES,Azur
-Pirlo,21,CC,Azur
-Materazzi,23,DC,Azuz
-Zaccardo,2,DC,Azur
-De Rossi,4,CC,Azur
-Barzagli,6,DC,Azur
-Del Piero,7,AT,Azur
-Gilardino,11,ATT,Azur
-Peruzzi,12,P,Gold
-Nesta,13,DC,Azur
-Amelia,14,P,Gold
-Iaquinta,15,ATT,Azur
-Barone,17,CC,Azur
-Inzaghi,18,ATT,Azur
-Oddo,22,TD,Azur
+Buffon,1,P,Gold,False
+Grosso,3,DS,Azur,False
+Cannavaro,5,DC,Azur,True
+Gattuso,8,CC,Azur,False
+Toni,9,ATT,Azur,False
+Totti,10,AT,Azur,False
+Camoranesi,16,ED,Azur,False
+Zambrotta,19,TD,Azur,False
+Perrotta,20,ES,Azur,False
+Pirlo,21,CC,Azur,False
+Materazzi,23,DC,Azuz,False
+Zaccardo,2,DC,Azur,False
+De Rossi,4,CC,Azur,False
+Barzagli,6,DC,Azur,False
+Del Piero,7,AT,Azur,False
+Gilardino,11,ATT,Azur,False
+Peruzzi,12,P,Gold,False
+Nesta,13,DC,Azur,False
+Amelia,14,P,Gold,False
+Iaquinta,15,ATT,Azur,False
+Barone,17,CC,Azur,False
+Inzaghi,18,ATT,Azur,False
+Oddo,22,TD,Azur,False

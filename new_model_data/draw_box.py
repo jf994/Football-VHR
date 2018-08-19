@@ -11,7 +11,7 @@ br_list = []
 object_list = []
 
 # constants
-image_folder = 'cards_images'
+image_folder = 'train_images'
 savedir = 'annotations'
 obj1 = 'red_card'
 obj2 = 'yellow_card'
@@ -52,7 +52,8 @@ def toggle_selector(event):
 
 if __name__ == '__main__':
     for n, image_file in enumerate(os.scandir(image_folder)):
-        if n > 342:
+        if n > 353:
+            print(str(n - 353)+" - "+str(n))
             img = image_file
             fig, ax = plt.subplots(1, figsize=(10.5, 8))
             mngr = plt.get_current_fig_manager()

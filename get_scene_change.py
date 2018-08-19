@@ -20,15 +20,18 @@ def count_nonblack_np(img):
 
     """
     return img.any(axis=-1).sum()
-def is_new_scene(image,old_ratio):
+def is_new_scene(image,old_ratio,do_resize):
     red_ratio = 0
     blue_ratio = 0
     green_ratio = 0
+    small_frame = image
 
-    small_frame = cv2.resize(image, (0, 0), fx=0.1, fy=0.1)
+    if do_resize:
+        small_frame = cv2.resize(image, (0, 0), fx=0.1, fy=0.1)
     # define the list of boundaries
     boundaries = [
-        ([17, 15, 100], [50, 56, 200]),  # red
+        #([17, 15, 100], [50, 56, 200]),  # red
+        ([30, 150, 50], [255, 255, 180]),  # red
         ([86, 31, 4], [220, 88, 50]), #blue
         ([35, 58, 0], [86, 255, 142]) #green
     ]

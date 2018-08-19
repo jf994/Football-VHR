@@ -1,5 +1,7 @@
 from oologic.create_json import writeToJSONFile
 from oologic.create_txt import writeToTXTFile
+
+
 class Match:
     event_list = []
 

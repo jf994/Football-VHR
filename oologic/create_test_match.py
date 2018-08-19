@@ -25,7 +25,7 @@ def createTeam(file):
     with open(file, 'r') as f:
         reader = csv.reader(f)
         roster = []
-        banch = []
+        bench = []
         n = 0
         for row in reader:
             if n == 0:
@@ -34,12 +34,12 @@ def createTeam(file):
                 coach = Coach(row[0], row[1])
             else:
 
-                player = Player(row[0], row[1], row[2], row[3])
+                player = Player(row[0], row[1], row[2], row[3], row[4])
                 if n < 12:
                     roster.append(player)
                 else:
-                    banch.append(player)
+                    bench.append(player)
             n += 1
-        team = Team(name, roster, banch, coach)
+        team = Team(name, roster, bench, coach)
         return team
 
