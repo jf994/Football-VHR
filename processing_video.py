@@ -24,14 +24,15 @@ frame_rate_originale = int(temp_opt[3])
 tfnet = TFNet(option)
 last_tag_time = 0
 capture = cv2.VideoCapture(str(temp_opt[0]))
+num_frame_scena = 0
+current_frame_scena = 0
 num_frame = 0
 temp_num_frame = 1
-do_switch = 0
+do_switch = [0, 0]
 events = 0
 old_ratio = [0, 0, 0]
-old_ratio_punteggio = [0, 0, 0]
-saved_ratio_punteggio = [-1, -1, -1]
-start_count = False
+old_ratios_punteggio = [[0, 0, 0], [0, 0, 0]]
+saved_ratios_punteggio = [[-1, -1, -1], [-1, -1, -1]]
 
 #get_names_from_image(match.home_team.name)
 #get_names_from_image(match.guest_team.name)
@@ -56,31 +57,45 @@ while (capture.isOpened()):
             old_ratio[1] = temp[1]
             old_ratio[2] = temp[2]
             temp_num_frame = 1
-            #if (temp[3] > .1):
-                #print("Nuova scena " + str(num_frame))
+            if (temp[3] > .1):
+                print("Nuova scena " + str(num_frame))
+                num_frame_scena = num_frame
 
             #crop = frame[55:70, 305:335]
-            crop = frame[55:70, 275:305]
-            cv2.imshow('crop', crop)
-            temp2 = is_new_scene(crop, old_ratio_punteggio, False)
-            old_ratio_punteggio[0] = temp2[0]
-            old_ratio_punteggio[1] = temp2[1]
-            old_ratio_punteggio[2] = temp2[2]
-            if (temp2[3] < .05):
-                do_switch += 1
-                if (do_switch == 10):
-                    count_distance(saved_ratio_punteggio, old_ratio_punteggio)
-                    print("diff: "+str(old_ratio_punteggio[3]))
-                    events += 1
-                    saved_ratio_punteggio[0] = old_ratio_punteggio[0]
-                    saved_ratio_punteggio[1] = old_ratio_punteggio[1]
-                    saved_ratio_punteggio[2] = old_ratio_punteggio[2]
-                    if (old_ratio_punteggio[3] > .05):
-                        print("GOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAL")
-                        match.home_team.score_goal()
-                    old_ratio_punteggio.pop()
-            elif (temp2[3] > .2):
-                do_switch = 0
+            crops = []
+            crops.append(frame[55:70, 275:305])
+            crops.append(frame[55:70, 305:335])
+
+            for (i, crop) in enumerate(crops):
+                #cv2.imshow('crop', crop)
+                temp2 = is_new_scene(crop, old_ratios_punteggio[i], False)
+                old_ratios_punteggio[i][0] = temp2[0]
+                old_ratios_punteggio[i][1] = temp2[1]
+                old_ratios_punteggio[i][2] = temp2[2]
+                if (temp2[3] < .05):
+                    do_switch[i] += 1
+                    if (do_switch[i] == 10):
+                        if (current_frame_scena == num_frame_scena):
+                            do_switch[0] = 0
+                            do_switch[1] = 0
+                        else:
+                            count_distance(saved_ratios_punteggio[i], old_ratios_punteggio[i])
+                            print(" diff: " + str(old_ratios_punteggio[i][3]))
+                            events += 1
+                            saved_ratios_punteggio[i][0] = old_ratios_punteggio[i][0]
+                            saved_ratios_punteggio[i][1] = old_ratios_punteggio[i][1]
+                            saved_ratios_punteggio[i][2] = old_ratios_punteggio[i][2]
+                            if (old_ratios_punteggio[i][3] > .05):
+                                print("GOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAL")
+                                match.home_team.score_goal()
+                            old_ratios_punteggio[i].pop()
+
+                else:
+                    do_switch[0] = 0
+                    do_switch[1] = 0
+                    current_frame_scena = num_frame_scena
+
+            print(str(do_switch[0]) + " - " + str(do_switch[1]))
 
         results = tfnet.return_predict(frame)
         for result in results:

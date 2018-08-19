@@ -7,7 +7,7 @@ def count_nonblack_np(img):
 
     """
     return img.any(axis=-1).sum()
-def detect_color(image, show=True):
+def detect_color(image, show=False):
     # define the list of boundaries
     boundaries = [
         ([17, 15, 100], [50, 56, 200]),  # red
