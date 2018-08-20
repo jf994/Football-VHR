@@ -28,6 +28,8 @@ def is_new_scene(image,old_ratio,do_resize):
 
     if do_resize:
         small_frame = cv2.resize(image, (0, 0), fx=0.1, fy=0.1)
+    #else:
+        #small_frame = cv2.resize(image, (0, 0), fx=4, fy=4)
     # define the list of boundaries
     boundaries = [
         #([17, 15, 100], [50, 56, 200]),  # red
