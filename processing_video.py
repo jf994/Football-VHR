@@ -1,4 +1,5 @@
 import cv2
+import sys
 from darkflow.net.build import TFNet
 import numpy as np
 import time
@@ -8,7 +9,13 @@ from get_color import detect_color
 from get_scene_change import is_new_scene,count_distance
 from face_rec import get_faces, get_names_from_image
 from oologic.create_test_match import createMatch
+from oologic.person import Person
 from get_options import get_opt
+
+
+def assign_vector(vector, vector_temp):
+        for i in range(0, 3):
+            vector[i] = vector_temp[i]
 
 temp_opt = get_opt()
 
@@ -38,6 +45,7 @@ tabellone_ratios = [0, 0, 0]
 temp_ratios_topleft = [0, 0, 0]
 punteggio_home = [0, 0, 0]
 punteggio_guest = [0, 0, 0]
+unknown_person = Person('Unknown', '')
 
 #get_names_from_image(match.home_team.name)
 #get_names_from_image(match.guest_team.name)
@@ -50,124 +58,132 @@ while (capture.isOpened()):
     sicurezza = 0
     ret, frame = capture.read()
 
-
     if ret:
-        if (temp_num_frame % 3 == 0):
+        #controllo le facce ogni 3 frame
+        if(temp_num_frame % 3 == 0):
             frame = get_faces(frame)
-        # ogni 2 secondi controllo la scena
-        if (temp_num_frame == (frame_rate_originale * 2)):
-
-            temp = is_new_scene(frame, old_ratio, True)
-            old_ratio[0] = temp[0]
-            old_ratio[1] = temp[1]
-            old_ratio[2] = temp[2]
+        # ogni 2 secondi controllo la scena e il risultato
+        if(temp_num_frame == (frame_rate_originale * 2)):
+            #calcolo ratio e variazione valori RGB per controllare cambio scena
+            temp_scene = is_new_scene(frame, old_ratio, True)
+            assign_vector(old_ratio, temp_scene)
             temp_num_frame = 1
-            if (temp[3] > .1):
-                print("Nuova scena " + str(num_frame))
+            #verifico l'avvenuto cambio di scena
+            if(temp_scene[3] > .1):
                 num_frame_scena = num_frame
 
-        #DA QUI--------------------------------------------------
+            #ritaglio il frame dove dovrebbe essere il tabellone col risultato
             crop = frame[55:70, 225:385]
-            cv2.imshow('crop', crop)
-            temp2 = is_new_scene(crop, temp_ratios_topleft, False)
-            temp_ratios_topleft[0] = temp2[0]
-            temp_ratios_topleft[1] = temp2[1]
-            temp_ratios_topleft[2] = temp2[2]
-            print("temp: " + str(temp2[3]))
+            temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
+            assign_vector(temp_ratios_topleft, temp_topleft)
+            #se il tabellone è già stato trovato...
             if (tabellone_on):
-                distance = count_distance(tabellone_ratios,temp_ratios_topleft)[3]
-                print("distanza: "+str(distance))
+                #...verifico se è ancora presente o meno...
+                print("tab_ratios")
+                print(tabellone_ratios)
+                distance = count_distance(tabellone_ratios, temp_ratios_topleft)[3]
                 temp_ratios_topleft.pop()
+                print("distance: "+str(distance))
+                #...se è assente...
                 if (distance>0.03):
+                    #...conto
                     count_event += 1
-                    print("è sparito: contiamo: "+str(count_event))
+                    #...arrivati a 12 secondi di assenza (6 * 2 volte il frame rate)...
                     if (count_event == 6):
-                        print("Evento confermato!")
-
-                        # routine generazione evento
+                        #confermo l'avvenuto evento
                         event_on = True
+                        print("C'è un evento.")
+
+                    #dopo 3 minuti e 20 secondi di assenza del tabellone, assumiamo la fine del tempo
+                    elif (count_event == 100):
+                        event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                           (count_event / 2)))),
+                                      'End first half',
+                                      unknown_person)
+                        match.event_list.append(event)
                 else:
-                    print("cartellone riapparso")
-                    #routine controllo goal
+                    #riappare il tabellone, controllo che tipo di evento è avvenuto
                     if (event_on):
+                        print("Nuovo evento creato.")
                         event_on = False
                         crop = frame[55:70, 284:300]
-                        cv2.imshow('ita', crop)
-                        temp2 = is_new_scene(crop, punteggio_home, False)
-                        print("p_h1: "+str(punteggio_home))
-                        print("distanza italia: "+str(temp2[3]))
-                        if(temp2[3]>0.04):
+                        temp_home = is_new_scene(crop, punteggio_home, False)
+                        #controllo se è avvenuto un goal per la squadra di casa
+                        if(temp_home[3]>0.04):
                             match.home_team.score_goal()
-                            print("GOAL ITALIA, FORTISSIMI")
-                            punteggio_home[0] = temp2[0]
-                            punteggio_home[1] = temp2[1]
-                            punteggio_home[2] = temp2[2]
-                            print("p_h2: " + str(punteggio_home))
-                            #cartellone nuovo
+                            event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                               (count_event / 2)))),
+                                          'Goal '+str(match.home_team.name),
+                                          unknown_person)
+                            match.event_list.append(event)
+                            print("GOAL ITALIA")
+                            print("ph3: ")
+                            print(punteggio_home)
+                            print("pg3: ")
+                            print(punteggio_guest)
+                            assign_vector(punteggio_home, temp_home)
+                            print("ph4: ")
+                            print(punteggio_home)
+                            #memorizzo le nuove ratio del tabellone cambiato
                             crop = frame[55:70, 225:385]
-                            temp2 = is_new_scene(crop, temp_ratios_topleft, False)
-                            tabellone_ratios[0] = temp2[0]
-                            tabellone_ratios[1] = temp2[1]
-                            tabellone_ratios[2] = temp2[2]
+                            temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
+                            assign_vector(tabellone_ratios, temp_topleft)
                         else:
                             crop = frame[55:70, 312:328]
-                            cv2.imshow('fra', crop)
-                            temp2 = is_new_scene(crop, punteggio_guest, False)
-                            print("p_h3: " + str(punteggio_guest))
-                            print("distanza francia: " + str(temp2[3]))
-                            if (temp2[3] > 0.04):
+                            temp_guest = is_new_scene(crop, punteggio_guest, False)
+                            #verifico se è avvenuto un goal per la squadra in trasferta
+                            if (temp_guest[3] > 0.04):
                                 match.guest_team.score_goal()
-                                print("GOAL FRANCIA, TANTOVIRIPIGLIAMO")
-                                punteggio_guest[0] = temp2[0]
-                                punteggio_guest[1] = temp2[1]
-                                punteggio_guest[2] = temp2[2]
-                                print("p_h4: " + str(punteggio_guest))
-                                # cartellone nuovo
+                                event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                                   (count_event/2)))),
+                                               'Goal '+str(match.guest_team.name),
+                                               unknown_person)
+                                match.event_list.append(event)
+                                print("GOAL FRANCIA")
+                                assign_vector(punteggio_guest, temp_guest)
+                                # memorizzo le nuove ratio del tabellone cambiato
                                 crop = frame[55:70, 225:385]
-                                temp2 = is_new_scene(crop, temp_ratios_topleft, False)
-                                tabellone_ratios[0] = temp2[0]
-                                tabellone_ratios[1] = temp2[1]
-                                tabellone_ratios[2] = temp2[2]
+                                temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
+                                assign_vector(tabellone_ratios, temp_topleft)
                             else:
-                                print("poi vediamo cosa succede qui")
+                                #altrimenti evento sconosciuto
+                                event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                                   (count_event/2)))),
+                                               'Unknown Event',
+                                               unknown_person)
+                                match.event_list.append(event)
                     count_event = 0
-
+            #se il tabellone non è ancora stato trovato...
             else:
-                if (temp2[3] > 0 and temp2[3] < .02):
-                    if (count == 0):
+                #...nel caso in cui si rilevi una variazione minima...
+                if(temp_topleft[3] > 0 and temp_topleft[3] < .02):
+                    #...inizio a contare e (nel caso sia il primo giro) salvo la scena attuale
+                    if(count == 0):
                         current_frame_scena = num_frame_scena
                     count += 1
-                    if (count == 5):
-                        if (num_frame_scena !=  current_frame_scena):
+                    #dopo 10 secondi senza variazioni significative...
+                    if(count == 5):
+                        #controllo che ci sia stato almeno un cambio di scena
+                        if(num_frame_scena !=  current_frame_scena):
+                            #confermo la presenza del cartellone e salvo le varie ratio
+                            cv2.imshow('tabellone', crop)
                             print("C'E' Il TABELLONE")
-                            tabellone_ratios[0] = temp_ratios_topleft[0]
-                            tabellone_ratios[1] = temp_ratios_topleft[1]
-                            tabellone_ratios[2] = temp_ratios_topleft[2]
+                            assign_vector(tabellone_ratios, temp_ratios_topleft)
                             tabellone_on = True
-                            #home score
+                            #home score ratio
                             crop = frame[55:70, 284:300]
-                            cv2.imshow('ita', crop)
-                            temp2 = is_new_scene(crop, temp_ratios_topleft, False)
-                            punteggio_home[0] = temp2[0]
-                            punteggio_home[1] = temp2[1]
-                            punteggio_home[2] = temp2[2]
-                            print(punteggio_home)
-                            #guest score
+                            temp_home = is_new_scene(crop, temp_ratios_topleft, False)
+                            assign_vector(punteggio_home, temp_home)
+                            #guest score ratio
                             crop = frame[55:70, 312:328]
-                            cv2.imshow('fra', crop)
-                            temp2 = is_new_scene(crop, temp_ratios_topleft, False)
-                            punteggio_guest[0] = temp2[0]
-                            punteggio_guest[1] = temp2[1]
-                            punteggio_guest[2] = temp2[2]
-                            print(punteggio_guest)
+                            temp_guest = is_new_scene(crop, temp_ratios_topleft, False)
+                            assign_vector(punteggio_guest, temp_guest)
                         else:
-                            print("Scena non cambiata")
+                            #se la scena non è cambiata, decremento count e ricontrollo
                             count -= 1
                 else:
-                    print("Azzerato")
+                    #se ho ottenuto una variazione eccessiva, azzero count
                     count = 0
-                print ("count: "+str(count))
-        #A QUI---------------------------------------------------------------------
 
         results = tfnet.return_predict(frame)
         for result in results:
@@ -188,18 +204,18 @@ while (capture.isOpened()):
             if "card" in str(label):
                 if label == 'red_card':
                     if color == 'not_sure':
-                        sicurezza -= .25
-                    elif color == 'yellow':
                         sicurezza -= .30
+                    elif color == 'yellow':
+                        sicurezza -= .35
                 elif label == 'yellow_card':
                     if color == 'not_sure':
-                        sicurezza -= .25
-                    elif color == 'red':
                         sicurezza -= .30
+                    elif color == 'red':
+                        sicurezza -= .35
 
-
-            frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
-            frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+            if sicurezza > .55:
+                frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
+                frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
         cv2.imshow('frame', frame)
         fps = 1 / (time.time() - stime)
@@ -208,9 +224,10 @@ while (capture.isOpened()):
         #print('FPS {:.1f}'.format(fps))
         if (time.time() - last_tag_time) > 5:
                 if sicurezza > .55:
+                    print("Ho salvato "+str(label)+" con sicurezza: "+str(sicurezza*100)+"%")
                     last_tag_time = time.time()
-                    event1 = Event(str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale))), label, match.home_team.roster[0])
-                    match.event_list.append(event1)
+                    event = Event(str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale))), label, unknown_person)
+                    match.event_list.append(event)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

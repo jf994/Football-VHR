@@ -3,6 +3,12 @@ class Person:
         self.surname = surname
         self.role = role
 
+    def json_person(self):
+        person = {}
+        person["surname"] = self.surname
+        person["role"] = self.role
+        return person
+
     def warning(self):
         if self.y_card == 0:
             self.y_card += 1
