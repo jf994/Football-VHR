@@ -78,11 +78,11 @@ while (capture.isOpened()):
                 distance = count_distance(tabellone_ratios,temp_ratios_topleft)[3]
                 print("distanza: "+str(distance))
                 temp_ratios_topleft.pop()
-                if (distance>0.02):
-                    print("è sparito: contiamo")
+                if (distance>0.03):
                     count_event += 1
-                    if (count_event == 5):
-                        print("Evento confermato yay!")
+                    print("è sparito: contiamo: "+str(count_event))
+                    if (count_event == 6):
+                        print("Evento confermato!")
 
                         # routine generazione evento
                         event_on = True
@@ -94,6 +94,7 @@ while (capture.isOpened()):
                         crop = frame[55:70, 284:300]
                         cv2.imshow('ita', crop)
                         temp2 = is_new_scene(crop, punteggio_home, False)
+                        print("p_h1: "+str(punteggio_home))
                         print("distanza italia: "+str(temp2[3]))
                         if(temp2[3]>0.04):
                             match.home_team.score_goal()
@@ -101,6 +102,7 @@ while (capture.isOpened()):
                             punteggio_home[0] = temp2[0]
                             punteggio_home[1] = temp2[1]
                             punteggio_home[2] = temp2[2]
+                            print("p_h2: " + str(punteggio_home))
                             #cartellone nuovo
                             crop = frame[55:70, 225:385]
                             temp2 = is_new_scene(crop, temp_ratios_topleft, False)
@@ -111,6 +113,7 @@ while (capture.isOpened()):
                             crop = frame[55:70, 312:328]
                             cv2.imshow('fra', crop)
                             temp2 = is_new_scene(crop, punteggio_guest, False)
+                            print("p_h3: " + str(punteggio_guest))
                             print("distanza francia: " + str(temp2[3]))
                             if (temp2[3] > 0.04):
                                 match.guest_team.score_goal()
@@ -118,6 +121,7 @@ while (capture.isOpened()):
                                 punteggio_guest[0] = temp2[0]
                                 punteggio_guest[1] = temp2[1]
                                 punteggio_guest[2] = temp2[2]
+                                print("p_h4: " + str(punteggio_guest))
                                 # cartellone nuovo
                                 crop = frame[55:70, 225:385]
                                 temp2 = is_new_scene(crop, temp_ratios_topleft, False)

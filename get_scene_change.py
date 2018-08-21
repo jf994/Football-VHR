@@ -49,7 +49,9 @@ def is_new_scene(image,old_ratio,do_resize):
         output = cv2.bitwise_and(small_frame, small_frame, mask=mask)
         tot_pix = count_nonblack_np(small_frame)
         color_pix = count_nonblack_np(output)
-        ratio = color_pix / tot_pix
+        ratio = 0
+        if (tot_pix != 0):
+            ratio = color_pix / tot_pix
         # print("ratio is:", ratio)
         if i == 0:
             red_ratio = ratio
