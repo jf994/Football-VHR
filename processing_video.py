@@ -11,6 +11,7 @@ from face_rec import get_faces, get_names_from_image
 from oologic.create_test_match import createMatch
 from oologic.person import Person
 from get_options import get_opt
+from count_white_pixels import count_difference_white
 
 
 def assign_vector(vector, vector_temp):
@@ -38,18 +39,20 @@ num_frame = 0
 temp_num_frame = 1
 count = 0
 count_event = 0
+count_tabellone_on = 0
+are_even = 0
+crop_old_home = 0
+crop_old_guest = 0
 event_on = False
 tabellone_on = False
 old_ratio = [0, 0, 0]
 tabellone_ratios = [0, 0, 0]
 temp_ratios_topleft = [0, 0, 0]
-punteggio_home = [0, 0, 0]
-punteggio_guest = [0, 0, 0]
 unknown_person = Person('Unknown', '')
 
-#get_names_from_image(match.home_team.name)
-#get_names_from_image(match.guest_team.name)
-#get_names_from_image("Ref")
+get_names_from_image(match.home_team.name)
+get_names_from_image(match.guest_team.name)
+get_names_from_image("Ref")
 
 print("Done.")
 
@@ -79,8 +82,8 @@ while (capture.isOpened()):
             #se il tabellone è già stato trovato...
             if (tabellone_on):
                 #...verifico se è ancora presente o meno...
-                print("tab_ratios")
-                print(tabellone_ratios)
+                #print("tab_ratios")
+                #print(tabellone_ratios)
                 distance = count_distance(tabellone_ratios, temp_ratios_topleft)[3]
                 temp_ratios_topleft.pop()
                 print("distance: "+str(distance))
@@ -92,67 +95,68 @@ while (capture.isOpened()):
                     if (count_event == 6):
                         #confermo l'avvenuto evento
                         event_on = True
+                        count_tabellone_on = 0
+                        current_frame_scena = num_frame_scena
                         print("C'è un evento.")
 
                     #dopo 3 minuti e 20 secondi di assenza del tabellone, assumiamo la fine del tempo
                     elif (count_event == 100):
                         event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                           (count_event / 2)))),
+                                                                           (count_event * 2)))),
                                       'End first half',
                                       unknown_person)
                         match.event_list.append(event)
-                else:
+                elif(distance <= 0.03 and count_tabellone_on == 2 and num_frame_scena !=  current_frame_scena):
                     #riappare il tabellone, controllo che tipo di evento è avvenuto
+                    print("count_event: "+str(count_event))
                     if (event_on):
-                        print("Nuovo evento creato.")
+                        print("Nuovo evento.")
                         event_on = False
-                        crop = frame[55:70, 284:300]
-                        temp_home = is_new_scene(crop, punteggio_home, False)
-                        #controllo se è avvenuto un goal per la squadra di casa
-                        if(temp_home[3]>0.04):
+                        crop_h = frame[55:70, 284:300]
+                        crop_g = frame[55:70, 312:328]
+                        diff_crop = count_difference_white(crop_h, crop_g, crop_old_home, crop_old_guest)
+                        if(are_even == 0 and diff_crop < 0) or (are_even == 1 and diff_crop == 0):
+                            are_even -= 1
                             match.home_team.score_goal()
                             event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                               (count_event / 2)))),
+                                                                               (count_event * 2)))),
                                           'Goal '+str(match.home_team.name),
                                           unknown_person)
                             match.event_list.append(event)
                             print("GOAL ITALIA")
-                            print("ph3: ")
-                            print(punteggio_home)
-                            print("pg3: ")
-                            print(punteggio_guest)
-                            assign_vector(punteggio_home, temp_home)
-                            print("ph4: ")
-                            print(punteggio_home)
+                            crop_old_home = frame[55:70, 284:300]
                             #memorizzo le nuove ratio del tabellone cambiato
                             crop = frame[55:70, 225:385]
                             temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
                             assign_vector(tabellone_ratios, temp_topleft)
+                        elif(are_even == 0 and diff_crop > 0) or (are_even == -1 and diff_crop == 0):
+                            are_even += 1
+                            match.guest_team.score_goal()
+                            print("tempo: "+str(num_frame / frame_rate_originale))
+                            print("meno: "+str(count_event * 2))
+                            event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                               (count_event * 2)))),
+                                           'Goal '+str(match.guest_team.name),
+                                           unknown_person)
+                            match.event_list.append(event)
+                            print("GOAL FRANCIA")
+                            crop_old_guest = frame[55:70, 312:328]
+                            # memorizzo le nuove ratio del tabellone cambiato
+                            crop = frame[55:70, 225:385]
+                            temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
+                            assign_vector(tabellone_ratios, temp_topleft)
                         else:
-                            crop = frame[55:70, 312:328]
-                            temp_guest = is_new_scene(crop, punteggio_guest, False)
-                            #verifico se è avvenuto un goal per la squadra in trasferta
-                            if (temp_guest[3] > 0.04):
-                                match.guest_team.score_goal()
-                                event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                                   (count_event/2)))),
-                                               'Goal '+str(match.guest_team.name),
-                                               unknown_person)
-                                match.event_list.append(event)
-                                print("GOAL FRANCIA")
-                                assign_vector(punteggio_guest, temp_guest)
-                                # memorizzo le nuove ratio del tabellone cambiato
-                                crop = frame[55:70, 225:385]
-                                temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
-                                assign_vector(tabellone_ratios, temp_topleft)
-                            else:
-                                #altrimenti evento sconosciuto
-                                event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                                   (count_event/2)))),
-                                               'Unknown Event',
-                                               unknown_person)
-                                match.event_list.append(event)
+                            #altrimenti evento sconosciuto
+                            print("Mini spot")
+                            event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
+                                                                               (count_event * 2)))),
+                                           'Unknown Event',
+                                           unknown_person)
+                            match.event_list.append(event)
                     count_event = 0
+                elif(distance <= 0.03 and count_tabellone_on != 2):
+                    if(num_frame_scena !=  current_frame_scena):
+                        count_tabellone_on += 1
             #se il tabellone non è ancora stato trovato...
             else:
                 #...nel caso in cui si rilevi una variazione minima...
@@ -166,18 +170,11 @@ while (capture.isOpened()):
                         #controllo che ci sia stato almeno un cambio di scena
                         if(num_frame_scena !=  current_frame_scena):
                             #confermo la presenza del cartellone e salvo le varie ratio
-                            cv2.imshow('tabellone', crop)
                             print("C'E' Il TABELLONE")
+                            crop_old_home = frame[55:70, 284:300]
+                            crop_old_guest = frame[55:70, 312:328]
                             assign_vector(tabellone_ratios, temp_ratios_topleft)
                             tabellone_on = True
-                            #home score ratio
-                            crop = frame[55:70, 284:300]
-                            temp_home = is_new_scene(crop, temp_ratios_topleft, False)
-                            assign_vector(punteggio_home, temp_home)
-                            #guest score ratio
-                            crop = frame[55:70, 312:328]
-                            temp_guest = is_new_scene(crop, temp_ratios_topleft, False)
-                            assign_vector(punteggio_guest, temp_guest)
                         else:
                             #se la scena non è cambiata, decremento count e ricontrollo
                             count -= 1
@@ -201,6 +198,7 @@ while (capture.isOpened()):
             # crop them
             crop_img = frame[ymin:ymax, xmin:xmax]
             color = detect_color(crop_img)
+
             if "card" in str(label):
                 if label == 'red_card':
                     if color == 'not_sure':
