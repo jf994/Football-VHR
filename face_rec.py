@@ -20,7 +20,9 @@ def get_names_from_image(team):
         known_face_encodings.append(face_recognition.face_encodings(image)[0])
         known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
 
-def get_faces(frame):
+
+def get_faces(frame, face_in_scene):
+
     # Resize frame of video to 1/4 size for faster face recognition processing
     small_frame = cv2.resize(frame, (0, 0), fx=0.125, fy=0.125)
 
@@ -61,5 +63,7 @@ def get_faces(frame):
             cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+
+            face_in_scene.append(name)
 
     return frame

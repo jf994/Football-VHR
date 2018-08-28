@@ -45,8 +45,15 @@ class Match:
 
         for event in self.event_list:
             time = str(event.time)
-            label = str(event.type)
-            who = str(event.who.surname)
+            self.str = str(event.description)
+            label = self.str
+
+            who = ""
+            if isinstance(event.who, list):
+                for ppl in event.who:
+                    who += str(ppl.surname) + " "
+            else:
+                who = str(event.who.surname)
 
             printingstring += "    "+str(time)+'     '+str(label)+'     '+str(who)+'\n'
         writeToTXTFile('txt', str(self.home_team.name)+" VS "+str(self.guest_team.name), printingstring)
