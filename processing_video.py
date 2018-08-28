@@ -115,7 +115,7 @@ while (capture.isOpened()):
                         crop_h = frame[55:70, 284:300]
                         crop_g = frame[55:70, 312:328]
                         diff_crop = count_difference_white(crop_h, crop_g, crop_old_home, crop_old_guest)
-                        if(are_even == 0 and diff_crop < 0) or (are_even == 1 and diff_crop == 0):
+                        if(are_even <= 0 and diff_crop == -1) or (are_even == 1 and diff_crop == 0) or (are_even > 1 and diff_crop == -1):
                             are_even -= 1
                             match.home_team.score_goal()
                             event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
@@ -129,7 +129,7 @@ while (capture.isOpened()):
                             crop = frame[55:70, 225:385]
                             temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
                             assign_vector(tabellone_ratios, temp_topleft)
-                        elif(are_even == 0 and diff_crop > 0) or (are_even == -1 and diff_crop == 0):
+                        elif(are_even >= 0 and diff_crop == 1) or (are_even == -1 and diff_crop == 0) or (are_even < -1 and diff_crop == 1):
                             are_even += 1
                             match.guest_team.score_goal()
                             print("tempo: "+str(num_frame / frame_rate_originale))

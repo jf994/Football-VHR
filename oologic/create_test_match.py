@@ -35,7 +35,7 @@ def createTeam(file):
             else:
 
                 player = Player(row[0], row[1], row[2], row[3], row[4])
-                if n < 12:
+                if n < 13:
                     roster.append(player)
                 else:
                     bench.append(player)
