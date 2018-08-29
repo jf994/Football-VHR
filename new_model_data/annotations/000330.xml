@@ -21,7 +21,7 @@
   </object>
   <object>
     <name>red_card</name>
-    <pose>Unspecified</pose>
+    <pose>Rear</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>

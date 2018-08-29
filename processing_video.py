@@ -85,9 +85,6 @@ get_names_from_image("Ref")
 print("Done.")
 
 
-
-
-
 while (capture.isOpened()):
     stime = time.time()
     sicurezza = 0
@@ -112,8 +109,8 @@ while (capture.isOpened()):
                     for player in players:
                         look_for(player, where_list, who_list)
                     event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale)))), "Close-up of ", who_list)
-                    for item in who_list:
-                        print(item.surname)
+                    #for item in who_list:
+                        #print(item.surname)
                     match.event_list.append(event)
                 who_list = []
                 face_in_scene = []
@@ -134,7 +131,7 @@ while (capture.isOpened()):
                 if (distance>0.03):
                     #...conto
                     count_event += 1
-                    print("count_event: " + str(count_event))
+                    #print("count_event: " + str(count_event))
                     #...arrivati a 12 secondi di assenza (6 * 2 volte il frame rate)...
                     if (count_event == 6):
                         #confermo l'avvenuto evento
@@ -302,12 +299,19 @@ while (capture.isOpened()):
                 if sicurezza > option['threshold']:
                     print("Ho salvato "+str(label)+" con sicurezza: "+str(sicurezza*100)+"%")
                     last_tag_time = time.time()
+
+                    if (label == 'yellow_card'):
+                        label = 'Yellow card'
+                    elif (label == 'red_card'):
+                        label = 'Red card'
+
                     event = Event(str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale))), label, unknown_person)
                     match.event_list.append(event)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     else:
+        match.event_list.sort(key=lambda r: datetime.datetime.strptime(r.time, "%H:%M:%S"))
         match.json_and_txt_create()
         capture.release()
         cv2.destroyAllWindows()

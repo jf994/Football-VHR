@@ -9,19 +9,7 @@
   </size>
   <object>
     <name>yellow_card</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
-    <difficult>0</difficult>
-    <bndbox>
-      <xmin>364</xmin>
-      <ymin>5</ymin>
-      <xmax>495</xmax>
-      <ymax>184</ymax>
-    </bndbox>
-  </object>
-  <object>
-    <name>yellow_card</name>
-    <pose>Unspecified</pose>
+    <pose>Frontal</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>

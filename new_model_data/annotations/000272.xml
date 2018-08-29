@@ -9,8 +9,8 @@
   </size>
   <object>
     <name>yellow_card</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
+    <pose>Rear</pose>
+    <truncated>1</truncated>
     <difficult>0</difficult>
     <bndbox>
       <xmin>1203</xmin>
@@ -21,9 +21,9 @@
   </object>
   <object>
     <name>red_card</name>
-    <pose>Unspecified</pose>
+    <pose>Rear</pose>
     <truncated>0</truncated>
-    <difficult>0</difficult>
+    <difficult>1</difficult>
     <bndbox>
       <xmin>1203</xmin>
       <ymin>126</ymin>

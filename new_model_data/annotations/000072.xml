@@ -9,9 +9,9 @@
   </size>
   <object>
     <name>yellow_card</name>
-    <pose>Unspecified</pose>
+    <pose>Frontal</pose>
     <truncated>0</truncated>
-    <difficult>0</difficult>
+    <difficult>1</difficult>
     <bndbox>
       <xmin>485</xmin>
       <ymin>511</ymin>

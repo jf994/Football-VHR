@@ -9,8 +9,8 @@
   </size>
   <object>
     <name>red_card</name>
-    <pose>Unspecified</pose>
-    <truncated>0</truncated>
+    <pose>Left</pose>
+    <truncated>1</truncated>
     <difficult>0</difficult>
     <bndbox>
       <xmin>293</xmin>

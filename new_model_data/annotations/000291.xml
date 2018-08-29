@@ -1,22 +1,22 @@
 <annotation>
-  <folder>cards_images</folder>
+  <folder>cart</folder>
   <filename>000291.png</filename>
   <segmented>0</segmented>
   <size>
-    <width>1920</width>
-    <height>1080</height>
+    <width>5760</width>
+    <height>2160</height>
     <depth>3</depth>
   </size>
   <object>
     <name>yellow_card</name>
-    <pose>Unspecified</pose>
+    <pose>Frontal</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>1157</xmin>
-      <ymin>169</ymin>
-      <xmax>1241</xmax>
-      <ymax>295</ymax>
+      <xmin>2458</xmin>
+      <ymin>240</ymin>
+      <xmax>2586</xmax>
+      <ymax>469</ymax>
     </bndbox>
   </object>
 </annotation>
