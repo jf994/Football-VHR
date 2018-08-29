@@ -1,7 +1,5 @@
 import cv2
-import sys
 from darkflow.net.build import TFNet
-import numpy as np
 import time
 import datetime
 from oologic.event import Event
@@ -13,6 +11,7 @@ from oologic.person import Person
 from get_options import get_opt
 from count_white_pixels import count_difference_white
 from collections import Counter
+from get_crops import get_crops
 
 
 def assign_vector(vector, vector_temp):
@@ -35,6 +34,7 @@ option = {
     'gpu': 1.0
 }
 
+crop_array = get_crops()
 match = createMatch()
 frame_rate_originale = int(temp_opt[3])
 tfnet = TFNet(option)
@@ -119,8 +119,7 @@ while (capture.isOpened()):
                 face_in_scene = []
 
             #ritaglio il frame dove dovrebbe essere il tabellone col risultato
-            crop = frame[55:70, 225:385]
-            cv2.imshow('crop',crop)
+            crop = frame[int(crop_array[0][0]):int(crop_array[0][1]), int(crop_array[0][2]):int(crop_array[0][3])]
             temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
             assign_vector(temp_ratios_topleft, temp_topleft)
             #se il tabellone è già stato trovato...
@@ -177,8 +176,7 @@ while (capture.isOpened()):
                         elif (half_time == 3):
                             string = 'Start extra time second half'
                         print(string)
-                        event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                           (count_event * 2)))),
+                        event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) - 5))),
                                       string,
                                       unknown_person)
                         match.event_list.append(event)
@@ -187,46 +185,42 @@ while (capture.isOpened()):
                     if (event_on):
                         print("Nuovo evento.")
                         event_on = False
-                        crop_h = frame[55:70, 284:300]
-                        crop_g = frame[55:70, 312:328]
+                        crop_h = frame[crop_array[1][0]:crop_array[1][1], crop_array[1][2]:crop_array[1][3]]
+                        crop_g = frame[crop_array[2][0]:crop_array[2][1], crop_array[2][2]:crop_array[2][3]]
                         diff_crop = count_difference_white(crop_h, crop_g, crop_old_home, crop_old_guest)
                         if(are_even <= 0 and diff_crop == -1) or (are_even == 1 and diff_crop == 0) or (are_even > 1 and diff_crop == -1):
                             are_even -= 1
                             match.home_team.score_goal()
-                            print("tempo: " + str(num_frame / frame_rate_originale))
-                            print("meno: " + str(count_event * 2))
                             event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                               (count_event * 2)))),
+                                                                               (count_event * 2) - 25))),
                                           'Goal '+str(match.home_team.name),
                                           unknown_person)
                             match.event_list.append(event)
                             print("GOAL ITALIA")
-                            crop_old_home = frame[55:70, 284:300]
+                            crop_old_home = frame[crop_array[1][0]:crop_array[1][1], crop_array[1][2]:crop_array[1][3]]
                             #memorizzo le nuove ratio del tabellone cambiato
-                            crop = frame[55:70, 225:385]
+                            crop = frame[crop_array[0][0]:crop_array[0][1], crop_array[0][2]:crop_array[0][3]]
                             temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
                             assign_vector(tabellone_ratios, temp_topleft)
                         elif(are_even >= 0 and diff_crop == 1) or (are_even == -1 and diff_crop == 0) or (are_even < -1 and diff_crop == 1):
                             are_even += 1
                             match.guest_team.score_goal()
-                            print("tempo: "+str(num_frame / frame_rate_originale))
-                            print("meno: "+str(count_event * 2))
                             event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                               (count_event * 2)))),
+                                                                               (count_event * 2) - 25))),
                                            'Goal '+str(match.guest_team.name),
                                            unknown_person)
                             match.event_list.append(event)
                             print("GOAL FRANCIA")
-                            crop_old_guest = frame[55:70, 312:328]
+                            crop_old_guest = frame[crop_array[2][0]:crop_array[2][1], crop_array[2][2]:crop_array[2][3]]
                             # memorizzo le nuove ratio del tabellone cambiato
-                            crop = frame[55:70, 225:385]
+                            crop = frame[crop_array[0][0]:crop_array[0][1], crop_array[0][2]:crop_array[0][3]]
                             temp_topleft = is_new_scene(crop, temp_ratios_topleft, False)
                             assign_vector(tabellone_ratios, temp_topleft)
                         else:
                             #altrimenti evento sconosciuto
                             print("Mini spot")
                             event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
-                                                                               (count_event * 2)))),
+                                                                               (count_event * 2) - 4))),
                                            'Mini spot',
                                            unknown_person)
                             match.event_list.append(event)
@@ -255,8 +249,8 @@ while (capture.isOpened()):
                                           unknown_person)
                             match.event_list.append(event)
 
-                            crop_old_home = frame[55:70, 284:300]
-                            crop_old_guest = frame[55:70, 312:328]
+                            crop_old_home = frame[crop_array[1][0]:crop_array[1][1], crop_array[1][2]:crop_array[1][3]]
+                            crop_old_guest = frame[crop_array[2][0]:crop_array[2][1], crop_array[2][2]:crop_array[2][3]]
                             assign_vector(tabellone_ratios, temp_ratios_topleft)
                             tabellone_on = True
                         else:
@@ -295,7 +289,7 @@ while (capture.isOpened()):
                     elif color == 'red':
                         sicurezza -= .35
 
-            if sicurezza > .55:
+            if sicurezza > option['threshold']:
                 frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
                 frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
@@ -305,7 +299,7 @@ while (capture.isOpened()):
         temp_num_frame += 1
         #print('FPS {:.1f}'.format(fps))
         if (time.time() - last_tag_time) > 5:
-                if sicurezza > .55:
+                if sicurezza > option['threshold']:
                     print("Ho salvato "+str(label)+" con sicurezza: "+str(sicurezza*100)+"%")
                     last_tag_time = time.time()
                     event = Event(str(datetime.timedelta(seconds=round(num_frame / frame_rate_originale))), label, unknown_person)
