@@ -62,6 +62,7 @@ unknown_person = Person('Unknown', '')
 temp_scene = [0, 0, 0, 0]
 face_in_scene = []
 THRESHOLD = 5
+saw_card = 0
 
 # some other variable for the json logic
 who_list = []
@@ -102,6 +103,8 @@ while (capture.isOpened()):
             temp_num_frame = 1
             #verifico l'avvenuto cambio di scena
             if(temp_scene[3] > .1):
+                #print("Nuova scena.")
+                saw_card = 0
                 num_frame_scena = num_frame
                 counter = Counter(face_in_scene)
                 players = Counter(el for el in counter.elements() if counter[el] >= THRESHOLD).keys()
@@ -287,8 +290,10 @@ while (capture.isOpened()):
                         sicurezza -= .35
 
             if sicurezza > option['threshold']:
-                frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
-                frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+                saw_card += 1
+                if (saw_card > 4):
+                    frame = cv2.rectangle(frame, tl, br, (255, 255, 255), 5)
+                    frame = cv2.putText(frame, text, tl, cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
         cv2.imshow('frame', frame)
         fps = 1 / (time.time() - stime)
@@ -296,7 +301,7 @@ while (capture.isOpened()):
         temp_num_frame += 1
         #print('FPS {:.1f}'.format(fps))
         if (time.time() - last_tag_time) > 5:
-                if sicurezza > option['threshold']:
+                if sicurezza > option['threshold'] and saw_card == 5:
                     print("Ho salvato "+str(label)+" con sicurezza: "+str(sicurezza*100)+"%")
                     last_tag_time = time.time()
 

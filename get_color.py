@@ -10,8 +10,8 @@ def count_nonblack_np(img):
 def detect_color(image, show=False):
     # define the list of boundaries
     boundaries = [
-        ([17, 15, 100], [50, 56, 200]),  # red
-        ([20, 100, 100], [30, 255, 255])  # yellow
+        ([0, 0, 153], [80, 80, 255]),  # red
+        ([0, 204, 204], [102, 255, 255])  # yellow
     ]
     i = 0
     for (lower, upper) in boundaries:
@@ -23,13 +23,17 @@ def detect_color(image, show=False):
         # the mask
         mask = cv2.inRange(image, lower, upper)
         output = cv2.bitwise_and(image, image, mask=mask)
+        #imageOut = np.hstack([image, output])
+        # Display the resulting frame
+        #cv2.imshow('RGB', imageOut)
         tot_pix = count_nonblack_np(image)
         color_pix = count_nonblack_np(output)
         ratio = color_pix / tot_pix
-        # print("ratio is:", ratio)
-        if ratio > 0.05 and i == 0:
+        #print("giro: ", i)
+        #print("ratio is:", ratio)
+        if ratio > 0.1 and i == 0:
             return 'red'
-        elif ratio > 0.05 and i == 1:
+        elif ratio > 0.1 and i == 1:
             return 'yellow'
 
         i += 1

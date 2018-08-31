@@ -33,7 +33,8 @@ def is_new_scene(image,old_ratio,do_resize):
     # define the list of boundaries
     boundaries = [
         #([17, 15, 100], [50, 56, 200]),  # red
-        ([30, 150, 50], [255, 255, 180]),  # red
+        #([30, 150, 50], [255, 255, 180]),  # red
+        ([0, 0, 153], [80, 80, 255]),  # red
         ([86, 31, 4], [220, 88, 50]), #blue
         ([35, 58, 0], [86, 255, 142]) #green
     ]
