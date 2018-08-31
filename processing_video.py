@@ -12,6 +12,7 @@ from get_options import get_opt
 from count_white_pixels import count_difference_white
 from collections import Counter
 from get_crops import get_crops
+from delete_entries import delete_false_positive
 
 
 def assign_vector(vector, vector_temp):
@@ -317,6 +318,7 @@ while (capture.isOpened()):
             break
     else:
         match.event_list.sort(key=lambda r: datetime.datetime.strptime(r.time, "%H:%M:%S"))
+        match.event_list = delete_false_positive(match.event_list)
         match.json_and_txt_create()
         capture.release()
         cv2.destroyAllWindows()
