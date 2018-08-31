@@ -21,8 +21,8 @@ def assign_vector(vector, vector_temp):
 
 
 def look_for(who, where, who_list):
-    for list in where:
-        for el in list:
+    for mlist in where:
+        for el in mlist:
             if el.surname == who:
                 who_list.append(el)
 
@@ -64,6 +64,7 @@ temp_scene = [0, 0, 0, 0]
 face_in_scene = []
 THRESHOLD = 5
 saw_card = 0
+start_time = 0
 
 # some other variable for the json logic
 who_list = []
@@ -80,9 +81,9 @@ others.append(match.guest_team.coach)
 others.append(match.referee)
 where_list.append(others)
 
-get_names_from_image(match.home_team.name)
-get_names_from_image(match.guest_team.name)
-get_names_from_image("Ref")
+#get_names_from_image(match.home_team.name)
+#get_names_from_image(match.guest_team.name)
+#get_names_from_image("Ref")
 
 print("Done.")
 
@@ -150,13 +151,17 @@ while (capture.isOpened()):
                         end_half = True
                         half_time += 1
                         if (half_time == 1):
-                            string = 'End first half'
+                            string = 'End first half: '+str(match.home_team.name)+" "+str(match.home_team.score)+"-"\
+                                     + str(match.guest_team.score)+" "+str(match.guest_team.name)
                         elif (half_time == 2):
-                            string = 'End second half'
+                            string = 'End second half: '+str(match.home_team.name)+" "+str(match.home_team.score)+"-"\
+                                     + str(match.guest_team.score)+" "+str(match.guest_team.name)
                         elif (half_time == 3):
-                            string = 'End extra time first half'
+                            string = 'End extra time first half: '+str(match.home_team.name)+" "+str(match.home_team.score)+"-"\
+                                     + str(match.guest_team.score)+" "+str(match.guest_team.name)
                         elif (half_time == 4):
-                            string = 'End extra time second half'
+                            string = 'End extra time second half: '+str(match.home_team.name)+" "+str(match.home_team.score)+"-"\
+                                     + str(match.guest_team.score)+" "+str(match.guest_team.name)
 
                         print(string)
                         event = Event(str(datetime.timedelta(seconds=round((num_frame / frame_rate_originale) -
@@ -241,6 +246,7 @@ while (capture.isOpened()):
                     if(count == 5):
                         #controllo che ci sia stato almeno un cambio di scena
                         if(num_frame_scena !=  current_frame_scena):
+                            start_time = datetime.datetime.now()
                             #confermo la presenza del cartellone e salvo le varie ratio
                             print("C'E' Il TABELLONE")
                             print('Start first half')
@@ -281,14 +287,14 @@ while (capture.isOpened()):
             if "card" in str(label):
                 if label == 'red_card':
                     if color == 'not_sure':
-                        sicurezza -= .30
+                        sicurezza -= .40
                     elif color == 'yellow':
-                        sicurezza -= .35
+                        sicurezza -= .50
                 elif label == 'yellow_card':
                     if color == 'not_sure':
-                        sicurezza -= .30
+                        sicurezza -= .40
                     elif color == 'red':
-                        sicurezza -= .35
+                        sicurezza -= .50
 
             if sicurezza > option['threshold']:
                 saw_card += 1
@@ -319,6 +325,16 @@ while (capture.isOpened()):
     else:
         match.event_list.sort(key=lambda r: datetime.datetime.strptime(r.time, "%H:%M:%S"))
         match.event_list = delete_false_positive(match.event_list)
+        mformat = "%H:%M:%S"
+        for ev in match.event_list:
+            event_time = time.strptime(ev.time, mformat)
+            event_time = datetime.timedelta(seconds=round(datetime.timedelta(hours=event_time.tm_hour,
+                                                                             minutes=event_time.tm_min,
+                                                                             seconds=event_time.tm_sec)
+                                                          .total_seconds()))
+            event_time += start_time
+            ev.time = str(event_time).split('.')[0].split(' ')[1]
+
         match.json_and_txt_create()
         capture.release()
         cv2.destroyAllWindows()

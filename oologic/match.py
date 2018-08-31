@@ -1,5 +1,6 @@
 from oologic.create_json import writeToJSONFile
 from oologic.create_txt import writeToTXTFile
+import csv
 
 
 class Match:
@@ -12,10 +13,17 @@ class Match:
         self.event_list = event_list
 
     def json_and_txt_create(self):
-        date = "060709"  # automatize this
-        sportname = "FOOTBALL"
-        leaguename = "WORLD CUP 2006"
-        gamenumber = "FINAL"
+        # date = "060709"
+        # sportname = "FOOTBALL"
+        # leaguename = "WORLD CUP 2006"
+        # gamenumber = "FINAL"
+        with open('oologic/template.csv', 'r') as f:
+            reader = csv.reader(f)
+            template = list(reader)[0]
+            date = template[0]
+            sportname = template[1]
+            leaguename = template[2]
+            gamenumber = template[3]
         self.txt_match(date, sportname, leaguename, gamenumber)
         self.json_match(date, sportname, leaguename)
 
