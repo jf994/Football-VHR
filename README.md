@@ -22,7 +22,7 @@ Installare con pip darkflow globalmente, usando il comando
 Nella cartella img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
 
 La cartella creatasi con le immagini deve essere spostata in img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
-Tale cartella deve essere poi spostata in new_model_data per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draww_box.py` (modificare il contenuto dello script secondo necessità per includere le classi desiderate).
+Tale cartella deve essere poi essere in new_model_data per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draw_box.py` (modificare il contenuto dello script secondo necessità per includere le classi desiderate).
 
 Un video tutorial su cui ci siamo basati per questo progetto può essere trovato [qui](https://www.youtube.com/watch?v=Fwcbov4AzQo&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM&index=6) e nel [successivo](https://www.youtube.com/watch?v=2XznLUgj1mg&index=7&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM).
  
