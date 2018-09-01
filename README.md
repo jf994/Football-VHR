@@ -12,26 +12,27 @@ Python3, tensorflow 1.0, numpy, opencv 3.
 
 ### Come iniziare
 
-Installare con pip darkflow globalmente
+Installare con pip darkflow globalmente, usando il comando
     ```
     pip install -e .
     ```
     
 ### Preparazione nuovo modello
 
-Nella cartella img_download/google_images_download sono presenti i file necessari per eseguire uno script pyton che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella)
-La cartella creatasi con le immagini deve essere spostate in img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py` ivi presente che le sposterà rinominandole nella cartella train_immages.
-Tale cartella deve essere poi spostata nella cartella new_model_data per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draww_box.py`, modificandone il contenuto secondo necessità per includere le classi desiderate.
+Nella cartella img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
 
-Un video tutorial su cui ci siamo basati per questo progetto può essere trovato [qui](https://www.youtube.com/watch?v=Fwcbov4AzQo&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM&index=6) e nel [successivo](https://www.youtube.com/watch?v=2XznLUgj1mg&index=7&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM) 
+La cartella creatasi con le immagini deve essere spostata in img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
+Tale cartella deve essere poi spostata in new_model_data per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draww_box.py` (modificare il contenuto dello script secondo necessità per includere le classi desiderate).
+
+Un video tutorial su cui ci siamo basati per questo progetto può essere trovato [qui](https://www.youtube.com/watch?v=Fwcbov4AzQo&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM&index=6) e nel [successivo](https://www.youtube.com/watch?v=2XznLUgj1mg&index=7&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM).
  
 ### Trainare un nuovo modello
 
 *Le informazioni seguenti assumono che si voglia utilizzare tiny YOLO e il dataset contenga 2 classi*
 
-1. Creare una copia del configuration file `tiny-yolo-voc.cfg` e rinominaro seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg` (dove il 2c sta per 2 classi) (è importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per succiessive modifiche, vedi spiegazione successiva)
+1. Creare una copia del configuration file `tiny-yolo-voc.cfg` e rinominarlo seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg` (dove il 2c sta per 2 classi) (è importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per succiessive modifiche, vedi spiegazione successiva).
 
-2. In `tiny-yolo-voc-2c.cfg`, modificare il numero classes nel layer [region] (l'ultimo layer) facendolo corrispondere al numero di classi sulle quali si sta per trainare la rete (nel nostro caso 2)
+2. In `tiny-yolo-voc-2c.cfg`, modificare il numero classes nel layer [region] (l'ultimo layer) facendolo corrispondere al numero di classi sulle quali si sta per trainare la rete (nel nostro caso 2):
     
     ```python
     ...
@@ -47,7 +48,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     ...
     ```
 
-3. In `tiny-yolo-voc-2c.cfg`, cambiare il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2 quindi 5 * (2 + 5) = 35 quindi filters è settato a 35.
+3. In `tiny-yolo-voc-2c.cfg`, cambiare il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2 quindi 5 * (2 + 5) = 35 quindi filters è settato a 35:
     
     ```
     python
@@ -66,17 +67,17 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     ...
     ```
 
-4. Cambiare `labels.txt` per includere i label sui quali si desidera trainare la rete (il numero dei label deve essere lo stesso del numero delle classi settate nel file `tiny-yolo-voc-2c.cfg`). Nel nostro caso, `labels.txt` conterrà 2 label.
+4. Cambiare `labels.txt` per includere i label sui quali si desidera trainare la rete (il numero dei label deve essere lo stesso del numero delle classi settate nel file `tiny-yolo-voc-2c.cfg`). Nel nostro caso, `labels.txt` conterrà 2 label:
 
     ```
     label1
     label2
     ```
-5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg` eseguendo il seguente comando.
+5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg`, eseguendo il seguente comando:
 
     `python flow --model cfg/tiny-yolo-voc-2c.cfg --load bin/tiny-yolo-voc.weights --train --annotation new_model_data/annotations --dataset new_model_data/train_images --gpu 1.0 --epoch 600`
     
-per caricare il training da un determinato punto, dopo load mettere il numero del checkpoint desiderato invece di bin/tiny-yolo-voc.weights 
+`Per caricare il training da un determinato punto, dopo load mettere il numero del checkpoint desiderato invece di bin/tiny-yolo-voc.weights`
 
 
 * Perchè lasciare il file `tiny-yolo-voc.cfg` invariato?
@@ -100,10 +101,10 @@ Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
     284,300,X'sHOME
     312,328,X'sGUEST
     ``
-riga 1 rappresenta i valori Ymin e Ymax per tutti i crop
-riga 2 rappresenta le coordinate Xmin e Xmax del tabellone intero
-riga 3 rappresenta le coordinate Xmin e Xmax del punteggio della squadra di casa
-riga 4 rappresenta le coordinate Xmin e Xmax del punteggio della squadra ospite
+* riga 1 rappresenta i valori Ymin e Ymax per tutti i crop
+* riga 2 rappresenta le coordinate Xmin e Xmax del tabellone intero
+* riga 3 rappresenta le coordinate Xmin e Xmax del punteggio della squadra di casa
+* riga 4 rappresenta le coordinate Xmin e Xmax del punteggio della squadra ospite
 
 Modificare nella cartella oologic il file `template.csv` inserendo i seguenti dati separati da virgola:
 
@@ -166,6 +167,6 @@ Modificare nella cartella oologic il file csv `match.csv` inserendo i seguenti d
     
 Inserire nella cartella img tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per giocatore e allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
 
-Infine, da terminale, raggiungere la cartella del progetto e digitare il seguente comando
+Infine, da terminale, raggiungere la cartella del progetto e digitare il seguente comando:
 
     `python processing_video.py`
