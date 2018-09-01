@@ -47,7 +47,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     ...
     ```
 
-3. In `tiny-yolo-voc-2c.cfg`, cambia il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2 quindi 5 * (2 + 5) = 35 quindi filters è settato a 35.
+3. In `tiny-yolo-voc-2c.cfg`, cambiare il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2 quindi 5 * (2 + 5) = 35 quindi filters è settato a 35.
     
     ```
     python
@@ -143,7 +143,7 @@ Modificare nella cartella oologic il file csv relativo alla squadra home e nomin
 
     ```
     
-ATTENZIONE: l'oirdine degli elementi del file non è casuale e deve essere rispettato 
+ATTENZIONE: l'ordine degli elementi del file non è casuale e deve essere rispettato 
 
     ```
     Nome squadra
@@ -164,8 +164,8 @@ Modificare nella cartella oologic il file csv `match.csv` inserendo i seguenti d
 
     ```
     
-Inserire nella cartella img tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per giocatore e allenatore presente suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi Ref e contenere un immagine per l'arbitro nominata come spiegato in precedenza.
+Inserire nella cartella img tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per giocatore e allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
 
-Infine dal terminale python raggiungere la cartella del progetto e digitare il seguente comando
+Infine, da terminale, raggiungere la cartella del progetto e digitare il seguente comando
 
     `python processing_video.py`
