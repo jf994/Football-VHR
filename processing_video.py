@@ -45,6 +45,7 @@ option = {
 
 frame_rate_originale = int(temp_opt[3])
 capture = cv2.VideoCapture(str(temp_opt[0]))
+height = round(capture.get(4))  # altezza del frame (usata per settare la posizione del valore degli FPS)
 tfnet = TFNet(option)
 
 # variabili golbali
@@ -62,7 +63,7 @@ crop_old_guest = 0  # contiene il frame tagliato con lo score della squadra ospi
 half_time = 0  # conta le meta di tempo passate supplementari inclusi
 THRESHOLD = 5  # costante contenente il numero di volte in cui una faccia deve comparire in una scena per essere rilevata
 saw_card = 0  # variabile che aumenta a ogni cartellino valido superato 5 considera l'evento avvenuto
-start_time = 0  # contiene l'oggetto datetime di comparsa del cartellone per calcolo del tempo
+start_time = datetime.datetime.now()  # contiene l'oggetto datetime di comparsa del cartellone per calcolo del tempo
 temp_scene = [0, 0, 0, 0]  # contiene valori temporanei relativi alle ratio e alle loro variazioni tra le scene
 old_ratio = [0, 0, 0]  # contiene le ratio dell'ultima scena salvata per comparazione successiva
 tabellone_ratios = [0, 0, 0]  # contiene le ratio del tabellone per controllare la sua ricomparsa
@@ -311,15 +312,17 @@ while(capture.isOpened()):
 
             # dopo aver controllato il colore predominante lo confronto con la label e
             # abbasso la sicurezza in caso di risultati incerto o discordante
+            # se il colore è discordante, elimino il risultato trovato, altrimenti, se non è sicuro,
+            # mantengo il risultato solo se questo è >= del 98% di sicurezza
             if "card" in str(label):
                 if label == 'red_card':
                     if color == 'not_sure':
-                        sicurezza -= .40
+                        sicurezza -= .42
                     elif color == 'yellow':
                         sicurezza -= .50
                 elif label == 'yellow_card':
                     if color == 'not_sure':
-                        sicurezza -= .40
+                        sicurezza -= .42
                     elif color == 'red':
                         sicurezza -= .50
             # se la sicurezza è maggiore del treshold dopo questi controlli...
@@ -337,8 +340,7 @@ while(capture.isOpened()):
         fps = 1 / (time.time() - stime)
         num_frame += 1
         temp_num_frame += 1
-        # print('FPS {:.1f}'.format(fps))
-        #TODO: inserire gli fps nel corner in basso a destra dopo tutte le analisi bianco
+        frame = cv2.putText(frame, 'FPS {:.1f}'.format(fps), (5, height-10), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
         cv2.imshow('frame', frame)  # dopo aver modificato il frame nell'analisi, lo mostro a video
         # se sono passati almeno 5 secondi dall'utlimo cartellino salvato...

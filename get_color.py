@@ -12,7 +12,7 @@ def detect_color(image, show=False):
     # definisco i boundaries per rosso e giallo
     boundaries = [
         ([0, 0, 153], [80, 80, 255]),  # rosso
-        ([0, 204, 204], [102, 255, 255])  # giallo
+        ([0, 145, 145], [102, 255, 255])  # giallo
     ]
     i = 0
     for (lower, upper) in boundaries:
@@ -28,9 +28,9 @@ def detect_color(image, show=False):
         color_pix = count_nonblack_np(output)
         ratio = color_pix / tot_pix
         # se la ratio è > .1 ed è il primo giro, ritorno 'red', altrimenti 'yellow'
-        if ratio > 0.1 and i == 0:
+        if ratio > 0.08 and ratio < 0.25 and i == 0:
             return 'red'
-        elif ratio > 0.1 and i == 1:
+        elif ratio > 0.08 and ratio < 0.25 and i == 1:
             return 'yellow'
 
         i += 1
