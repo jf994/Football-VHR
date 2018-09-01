@@ -1,9 +1,13 @@
+# nel file sono presenti le funzioni per gestire la creazione del match nel sistema obj oriented del programma
+# partendo dal file match.csv
 import csv
 from oologic.person import Coach, Player, Referee
 from oologic.team import Team
 from oologic.match import Match
 
 
+# la funzione si occupa di leggere il file match.csv per creare la prima struttura della partita,
+# nella funzione viene anche chiamata createTeam per leggere i file relativi alla squadra
 def createMatch():
     with open('oologic/match.csv', 'r') as f:
         reader = csv.reader(f)
@@ -20,6 +24,7 @@ def createMatch():
     return match
 
 
+# la funzione si occupa di leggere i file relativi alla specifica squadra creando cosi l'oggetto team per il match
 def createTeam(file):
     file = 'oologic/'+str(file)
     with open(file, 'r') as f:

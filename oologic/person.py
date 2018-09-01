@@ -1,14 +1,22 @@
+# nel file è presente la definizione della classe Person e delle sottoclassi derivate
+# Player, Referee e Coach. Inoltre i suoi metodi permettono di tenere traccia di alcune statistiche importanti
+
+
 class Person:
     def __init__(self, surname, role):
         self.surname = surname
         self.role = role
 
+    # il metodo permette di gestire la generazione a cascata del dizionario che conterrà i dati utili alla
+    # generazione automatica dei file di output
     def json_person(self):
         person = {}
         person["surname"] = self.surname
         person["role"] = self.role
         return person
 
+    # il metodo permette di gestire autmaticamente la situazione cartellini per un giocatore all'interno del json
+    # ATTENZIONE: il metodo è inutilizzato in quanto il programma non riconosce l'autore del fallo di un cartellino
     def warning(self):
         if self.y_card == 0:
             self.y_card += 1
@@ -29,6 +37,8 @@ class Player(Person):
         self.r_card = 0
         self.is_cpt = is_cpt
 
+    # il metodo permette di gestire la generazione a cascata del dizionario che conterrà i dati utili alla
+    # generazione automatica dei file di output
     def json_person(self):
         player = {}
         player["surname"] = self.surname
@@ -54,6 +64,8 @@ class Referee(Person):
         super().__init__(surname, role)
         self.color = color
 
+    # il metodo permette di gestire la generazione a cascata del dizionario che conterrà i dati utili alla
+    # generazione automatica dei file di output
     def json_person(self):
         referee = {}
         referee["surname"] = self.surname
@@ -68,6 +80,8 @@ class Coach(Person):
         super().__init__(surname, role)
         self.r_card = 0
 
+    # il metodo permette di gestire la generazione a cascata del dizionario che conterrà i dati utili alla
+    # generazione automatica dei file di output
     def json_person(self):
         coach = {}
         coach["surname"] = self.surname

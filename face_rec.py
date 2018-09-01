@@ -1,15 +1,17 @@
+# il file gestisce il riconoscimento dei visi
+
 import face_recognition
 import cv2
 import os
 
-# Initialize some variables
+# Inizializzo variabili
 known_face_encodings = []
 known_face_names = []
 face_locations = []
 face_encodings = []
 face_names = []
 
-
+# salvo i nomi da associare ad ogni viso attraverso il nome del file ed il relativo face encoding
 def get_names_from_image(team):
     global known_face_encodings
     global known_face_names
@@ -20,26 +22,26 @@ def get_names_from_image(team):
         known_face_encodings.append(face_recognition.face_encodings(image)[0])
         known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
 
-
+# la funzione cerca le facce nella scena
 def get_faces(frame, face_in_scene):
 
-    # Resize frame of video to 1/4 size for faster face recognition processing
+    # faccio il resize del frame del video ad 1/8 della sua grandezza per ottenere una maggiore velocità di analisi
     small_frame = cv2.resize(frame, (0, 0), fx=0.125, fy=0.125)
 
-    # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
+    # converto l'immagine da bgr ad rgb
     rgb_small_frame = small_frame[:, :, ::-1]
 
-    # Find all the faces and face encodings in the current frame of video
+    # trovo tutte le facce ed i face encodings nel frame
     face_locations = face_recognition.face_locations(rgb_small_frame)
     face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
     face_names = []
     for face_encoding in face_encodings:
-        # See if the face is a match for the known face(s)
+        # vedo se il viso trovato è tra quelli conosciuti
         matches = face_recognition.compare_faces(known_face_encodings, face_encoding, tolerance=0.55)
         name = "Person"
 
-        # If a match was found in known_face_encodings, just use the first one.
+        # se è stata trovata una corrispondenza nei known_face_encodings, usa la prima
         if True in matches:
             first_match_index = matches.index(True)
             name = known_face_names[first_match_index]
@@ -47,19 +49,19 @@ def get_faces(frame, face_in_scene):
         face_names.append(name)
 
 
-    # Display the results
+    # mostro i risultati
     for (top, right, bottom, left), name in zip(face_locations, face_names):
         if (name != 'Person'):
-            # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+            # ingrandisco le dimensioni delle facce di 8 volte...
             top *= 8
             right *= 8
             bottom *= 8
             left *= 8
 
-            # Draw a box around the face
+            # ...e disegno un bounding box intorno alla faccia
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
 
-            # Draw a label with a name below the face
+            # disegno un label col nome del giocatore sotto il bounding box
             cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)

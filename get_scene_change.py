@@ -1,7 +1,12 @@
+# il file controlla l'avvenuto (o meno) cambio di scena
+
 import cv2
 import numpy as np
 
-def count_distance(old_ratio,new_ratio):
+
+# calcolo la distanza tra le ratio attraverso la funzione chi-squared distance e ritorno le nuove ratio a cui appendo
+# la distanza calcolata
+def count_distance(old_ratio, new_ratio):
 
     i = 0
     val = 0
@@ -14,13 +19,13 @@ def count_distance(old_ratio,new_ratio):
     new_ratio.append(val)
     return new_ratio
 
-def count_nonblack_np(img):
-    """Return the number of pixels in img that are not black.
-    img must be a Numpy array with colour values along the last axis.
 
-    """
+# conto il numero di pixel nell'immagine che non sono neri
+def count_nonblack_np(img):
     return img.any(axis=-1).sum()
-def is_new_scene(image,old_ratio,do_resize):
+
+# calcola le ratio dei valori RGB
+def is_new_scene(image, old_ratio, do_resize):
     red_ratio = 0
     blue_ratio = 0
     green_ratio = 0
@@ -28,32 +33,29 @@ def is_new_scene(image,old_ratio,do_resize):
 
     if do_resize:
         small_frame = cv2.resize(image, (0, 0), fx=0.1, fy=0.1)
-    #else:
-        #small_frame = cv2.resize(image, (0, 0), fx=4, fy=4)
-    # define the list of boundaries
+
+    # definisco i boundaries
     boundaries = [
-        #([17, 15, 100], [50, 56, 200]),  # red
-        #([30, 150, 50], [255, 255, 180]),  # red
         ([0, 0, 153], [80, 80, 255]),  # red
         ([86, 31, 4], [220, 88, 50]), #blue
         ([35, 58, 0], [86, 255, 142]) #green
     ]
     i = 0
     for (lower, upper) in boundaries:
-        # create NumPy arrays from the boundaries
+        # creo array lower e upper dai boundaries
         lower = np.array(lower, dtype="uint8")
         upper = np.array(upper, dtype="uint8")
 
-        # find the colors within the specified boundaries and apply
-        # the mask
+        # trovo il colore all'interno dei boundaries e applico la maschera
         mask = cv2.inRange(small_frame, lower, upper)
         output = cv2.bitwise_and(small_frame, small_frame, mask=mask)
+        # calcolo la ratio tra i pixel che non sono neri del frame principale e di quello a cui ho applicato la maschera
         tot_pix = count_nonblack_np(small_frame)
         color_pix = count_nonblack_np(output)
         ratio = 0
+        # evito la divisione per zero
         if (tot_pix != 0):
             ratio = color_pix / tot_pix
-        # print("ratio is:", ratio)
         if i == 0:
             red_ratio = ratio
         elif i == 1:

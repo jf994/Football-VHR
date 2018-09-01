@@ -1,6 +1,9 @@
+# nel file è presente la definizione della classe Match che gestisce la struttura della partita e i suoi metodi
+
 from oologic.create_json import writeToJSONFile
 from oologic.create_txt import writeToTXTFile
 import csv
+
 
 
 class Match:
@@ -12,11 +15,9 @@ class Match:
         self.referee = referee
         self.event_list = event_list
 
+    # il metodo legge da un file csv alcune informazioni generiche sulla partita e chiama le due funzioni che permettono
+    # la creazione a cascata dei vari dizionari per la compilazione finale del json di output
     def json_and_txt_create(self):
-        # date = "060709"
-        # sportname = "FOOTBALL"
-        # leaguename = "WORLD CUP 2006"
-        # gamenumber = "FINAL"
         with open('oologic/template.csv', 'r') as f:
             reader = csv.reader(f)
             template = list(reader)[0]
@@ -27,6 +28,8 @@ class Match:
         self.txt_match(date, sportname, leaguename, gamenumber)
         self.json_match(date, sportname, leaguename)
 
+    # il metodo imposta l'effettiva creazione dei vari dizionari json chiamando infine la funzione per la scrittura
+    # dell'output
     def json_match(self, date, sportname, leaguename):
         match = {}
 
@@ -41,6 +44,7 @@ class Match:
             match["event list"].append(event.json_event())
         writeToJSONFile('json', str(self.home_team.name)+" VS "+str(self.guest_team.name), match)
 
+    # il metodo imposta l'effettiva creazione di una stringa la quale verrà stampata nel file txt di output
     def txt_match(self, date, sportname, leaguename, gamenumber):
         printingstring = ""
         title = str(sportname) + " " + str(leaguename) + " " + str(self.home_team.name) + " VS " + str(
@@ -57,7 +61,7 @@ class Match:
             label = self.str
 
             who = ""
-            if isinstance(event.who, list):
+            if isinstance(event.who, list):  # talvolta who è un giocatore, talvolta è una lista
                 for ppl in event.who:
                     who += str(ppl.surname) + " "
             else:

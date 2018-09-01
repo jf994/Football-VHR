@@ -1,9 +1,11 @@
+# il file gestisce il salvataggio delle annotazioni relative ad un'immagine
+
 import os
 import cv2
 from lxml import etree
 import xml.etree.cElementTree as ET
 
-
+# la funzione effettua il salvataggio delle annotazioni in una determinata cartella
 def write_xml(folder, img, objects, tl, br, savedir):
     if not os.path.isdir(savedir):
         os.mkdir(savedir)
@@ -38,7 +40,7 @@ def write_xml(folder, img, objects, tl, br, savedir):
     with open(save_path, 'wb') as temp_xml:
         temp_xml.write(xml_str)
 
-
+# main usato solo per il testing
 if __name__ == '__main__':
     """
     for testing
