@@ -2,7 +2,7 @@
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
-![test2](https://github.com/jf994/Football-VHR/master/docs/test2.gif)
+<p align="center"> <img src="https://github.com/jf994/Football-VHR/tree/master/docs/test2.gif"/> </p>
 
 ### Intro
 
