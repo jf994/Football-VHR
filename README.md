@@ -2,7 +2,7 @@
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
-![](https://github.com/jf994/Football-VHR/tree/master/docs/test.gif)
+![](https://github.com/jf994/Football-VHR/tree/master/docs/test.gif =250x250)
 ### Intro
 
 Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. Paper: (LINKPAPER)
