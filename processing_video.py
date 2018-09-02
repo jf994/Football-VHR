@@ -45,8 +45,10 @@ option = {
 
 frame_rate_originale = int(temp_opt[3])
 capture = cv2.VideoCapture(str(temp_opt[0]))
+width = round(capture.get(3)) # larghezza del frame
 height = round(capture.get(4))  # altezza del frame (usata per settare la posizione del valore degli FPS)
 tfnet = TFNet(option)
+# out = cv2.VideoWriter('output.mp4', 0x00000021, float(frame_rate_originale), (width, height))  # file video da salvare in output
 
 # variabili golbali
 last_tag_time = 0  # contiene il time dell'ultimo cartellino
@@ -343,6 +345,7 @@ while(capture.isOpened()):
         frame = cv2.putText(frame, 'FPS {:.1f}'.format(fps), (5, height-10), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
         cv2.imshow('frame', frame)  # dopo aver modificato il frame nell'analisi, lo mostro a video
+        # out.write(frame)  # 'stampo' il frame sul video che sto esportando
         # se sono passati almeno 5 secondi dall'utlimo cartellino salvato...
         if (time.time() - last_tag_time) > 5:
             # ...se la sicurezza è maggiore del threshold stabilito e ho contato sino a 5...
