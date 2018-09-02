@@ -2,15 +2,8 @@
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
-<<<<<<< Updated upstream
-![](https://github.com/jf994/Football-VHR/tree/master/docs/test.gif =250x250)
-=======
-<<<<<<< Updated upstream
-![test](https://github.com/jf994/Football-VHR/tree/master/docs/test.gif)
-=======
-![](https://github.com/jf994/Football-VHR/tree/master/docs/test.gif)
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+![](https://github.com/jf994/Football-VHR/tree/master/docs/test2.gif)
+
 ### Intro
 
 Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. Paper: (LINKPAPER)
