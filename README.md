@@ -2,7 +2,8 @@
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
-![](https://github.com/jf994/Football-VHR/blob/master/docs/inni.gif)
+| ![](https://github.com/jf994/Football-VHR/blob/master/docs/inni.gif)  | ![](https://github.com/jf994/Football-VHR/blob/master/docs/yellow_zambrotta.gif) | ![](https://github.com/jf994/Football-VHR/blob/master/docs/red_zidane.gif) |
+|:---:|:---:|:---:|
 
 ### Intro
 
