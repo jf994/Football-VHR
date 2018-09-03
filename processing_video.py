@@ -102,7 +102,6 @@ get_names_from_image("Ref")
 
 print("Done.")
 
-
 # inizio loop principale per analisi video che continua sino a che il video non finisce o viene forzatamente interrotto
 while(capture.isOpened()):
     stime = time.time()  # variabile utile al calcolo degli fps

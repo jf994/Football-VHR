@@ -39,7 +39,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
 
 *Le informazioni seguenti assumono che si voglia utilizzare tiny YOLO e il dataset contenga 2 classi*
 
-1. Creare una copia del configuration file `tiny-yolo-voc.cfg` e rinominarlo seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg` (dove il 2c sta per 2 classi) (è importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per succiessive modifiche, vedi spiegazione successiva).
+1. Creare una copia del configuration file `tiny-yolo-voc.cfg` e rinominarlo seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg`, dove il 2c sta per 2 classi. E' importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per successive modifiche, vedi spiegazione successiva.
 
 2. In `tiny-yolo-voc-2c.cfg`, modificare il numero classes nel layer [region] (l'ultimo layer) facendolo corrispondere al numero di classi sulle quali si sta per trainare la rete (nel nostro caso 2):
     
@@ -57,7 +57,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     ...
     ```
 
-3. In `tiny-yolo-voc-2c.cfg`, cambiare il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2 quindi 5 * (2 + 5) = 35 quindi filters è settato a 35:
+3. In `tiny-yolo-voc-2c.cfg`, cambiare il numero filters nel layer [convolutional] (penultimo layer) in num * (classes + 5). Nel nostro caso, num è 5 e classes 2. Essendo 5 * (2 + 5) = 35, filters è settato a 35:
     
     ```
     python
@@ -91,7 +91,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
 
 * Perchè lasciare il file `tiny-yolo-voc.cfg` invariato?
     
-   Quando darkflow vede che si desidera caricare `tiny-yolo-voc.weights` cercerà `tiny-yolo-voc.cfg` nella cartella cfg/ del progetto comparando quel file di configurazione con il nuovo settato da te `--model cfg/tiny-yolo-voc-2c.cfg`. In questo caso ogni layer avrà lo stesso numero per i pesi eccetto per gli ultimi 2 così da caricare i pesi dentro tutti i layer sino agli ultimi due dato che questi ultimi sono stati cambiati
+   Quando darkflow vede che si desidera caricare `tiny-yolo-voc.weights`, cercherà `tiny-yolo-voc.cfg` nella cartella cfg/ del progetto, comparando quel file di configurazione con il nuovo settato da te `--model cfg/tiny-yolo-voc-2c.cfg`. In questo caso ogni layer avrà lo stesso numero per i pesi eccetto per gli ultimi 2 così da caricare i pesi dentro tutti i layer sino agli ultimi due dato che questi ultimi sono stati cambiati
 
 ### Eseguire l'analisi video in tempo reale
 
@@ -121,7 +121,7 @@ Modificare nella cartella oologic il file `template.csv` inserendo i seguenti da
     ```
     data espressa nel formato AAMMGG, sport, campionato, numero partita
     ```
-Modificare nella cartella oologic il file csv relativo alla squadra home e nominaro nomesquadracasa.csv inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
+Modificare, nella cartella oologic, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
 
 
     ```
@@ -162,11 +162,10 @@ ATTENZIONE: l'ordine degli elementi del file non è casuale e deve essere rispet
     Giocatori in panchina in ordine di numero
 
     ```
-per ogni giocatore dovrà essere specificato: Cognome giocatore, numero, ruolo, colore maglia, booleano True se è capitano False altrimenti
+Per ogni giocatore dovrà essere specificato: Cognome giocatore, numero, ruolo, colore maglia, valore booleano (True se è capitano False altrimenti).
+La stessa procedura dovrà essere ripetuta per la squadra ospite.
 
-La stessa procedura dovrà essere ripetuta per la squadra ospite
-
-Modificare nella cartella oologic il file csv `match.csv` inserendo i seguenti dati:
+Modificare, nella cartella oologic, il file csv `match.csv` inserendo i seguenti dati:
 
     ```
     nome del file csv creato per la squadra di casa, nome del file csv creato per la squadra ospite
@@ -174,8 +173,8 @@ Modificare nella cartella oologic il file csv `match.csv` inserendo i seguenti d
 
     ```
     
-Inserire nella cartella img tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per giocatore e allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
+Inserire nella cartella img/ tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per ogni giocatore e l'allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
 
-Infine, da terminale, raggiungere la cartella del progetto e digitare il seguente comando:
+Infine, da Anaconda prompt, raggiungere la cartella del progetto e digitare il seguente comando:
 
     `python processing_video.py`
