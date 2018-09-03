@@ -14,6 +14,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 * Python 3.6. Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
 * Tensorflow (tutorial per la versione GPU [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s))
 * openCV ([qui](https://www.lfd.uci.edu/~gohlke/pythonlibs/))
+* Eseguire, da Anaconda prompt, i comandi `pip install face_recognition` e `pip install cmake`
 * Microsoft Visual C++ 14.0 (Build tool)
 
 ### Come iniziare
