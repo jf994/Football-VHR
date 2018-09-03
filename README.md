@@ -1,4 +1,4 @@
-# TRANSACTIONAL SYSTEM AND DATA WAREHOUSES - Football highlights
+# TRANSACTIONAL SYSTEMS & DATA WAREHOUSE - Football highlights
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
@@ -11,14 +11,18 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 ### Dipendenze
 
-Python3, tensorflow 1.0, numpy, opencv 3.
+* Python 3.6. Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
+* Tensorflow (tutorial per la versione GPU [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s))
+* openCV ([qui](https://www.lfd.uci.edu/~gohlke/pythonlibs/))
 
 ### Come iniziare
 
-Installare con pip darkflow globalmente, usando il comando
+* Installare con pip darkflow globalmente, usando il comando
     ```
     pip install -e .
     ```
+* Cercare su internet il file `tiny-yolo-voc.weights`
+* Creare, nella root della repository, una cartella bin ed inserirvi questo file
     
 ### Preparazione nuovo modello
 
