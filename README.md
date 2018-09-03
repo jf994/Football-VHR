@@ -97,7 +97,7 @@ Modificare il file `options.csv` inserendo i seguenti dati separati da virgola:
 
 
     ```
-    path relativo del video desiderato, threshold per darknet (valore tra zero e uno, l'analisi è stata testata per 0.55), numero checkpoint raggiunto durante il training, framerate del video originale
+    path relativo del video desiderato, threshold per darknet (valore tra zero e uno, l'analisi è stata testata per 0.55), numero checkpoint raggiunto durante il training (l'ultimo creatosi nella cartella ckpt), framerate del video originale
     ```
 Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 
