@@ -98,18 +98,15 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
 Modificare il file `options.csv` inserendo i seguenti dati separati da virgola:
 
 
-    ```
     path relativo del video desiderato, threshold per darknet (valore tra zero e uno, l'analisi è stata testata per 0.55), numero checkpoint raggiunto durante il training (l'ultimo creatosi nella cartella ckpt), framerate del video originale
-    ```
+
 Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 
-
-    ```
     55,70,YMIN&YMAX
     225,385,X'sTABELLONE
     284,300,X'sHOME
     312,328,X'sGUEST
-    ``
+
 * riga 1 rappresenta i valori Ymin e Ymax per tutti i crop
 * riga 2 rappresenta le coordinate Xmin e Xmax del tabellone intero
 * riga 3 rappresenta le coordinate Xmin e Xmax del punteggio della squadra di casa
@@ -117,14 +114,11 @@ Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 
 Modificare nella cartella oologic il file `template.csv` inserendo i seguenti dati separati da virgola:
 
-
-    ```
     data espressa nel formato AAMMGG, sport, campionato, numero partita
-    ```
+
 Modificare, nella cartella oologic, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
 
 
-    ```
     Italy
     Lippi,CT
     Buffon,1,P,Gold,False
@@ -151,27 +145,22 @@ Modificare, nella cartella oologic, il file csv relativo alla squadra di casa e 
     Inzaghi,18,ATT,Azur,False
     Oddo,22,TD,Azur,False
 
-    ```
     
 ATTENZIONE: l'ordine degli elementi del file non è casuale e deve essere rispettato 
 
-    ```
     Nome squadra
     Nome Allenatore,CT
     Giocatori titolari in ordine di numero
     Giocatori in panchina in ordine di numero
 
-    ```
 Per ogni giocatore dovrà essere specificato: Cognome giocatore, numero, ruolo, colore maglia, valore booleano (True se è capitano False altrimenti).
 La stessa procedura dovrà essere ripetuta per la squadra ospite.
 
 Modificare, nella cartella oologic, il file csv `match.csv` inserendo i seguenti dati:
 
-    ```
     nome del file csv creato per la squadra di casa, nome del file csv creato per la squadra ospite
     Cognome arbitro, REF, Colore Maglia
 
-    ```
     
 Inserire nella cartella img/ tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per ogni giocatore e l'allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
 
