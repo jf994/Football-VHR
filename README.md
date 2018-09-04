@@ -7,7 +7,7 @@
 
 ### Intro
 
-Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. Paper: (LINKPAPER)
+Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. ![Qui](https://github.com/jf994/Football-VHR/blob/master/docs/Studio di fattibilità per un sistema di highlights automatici di una partita di calcio.pdf) si può trovare il report che riassume il lavoro da noi svolto.
 
 ### Dipendenze
 
