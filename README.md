@@ -166,4 +166,4 @@ Inserire nella cartella img/ tre cartelle. Le prime due dovranno chiamarsi come 
 
 Infine, da Anaconda prompt, raggiungere la cartella del progetto e digitare il seguente comando:
 
-    `python processing_video.py`
+    python processing_video.py
