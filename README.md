@@ -1,4 +1,4 @@
-# TRANSACTIONAL SYSTEMS & DATA WAREHOUSE - Football highlights
+# TRANSACTIONAL SYSTEMS & DATA WAREHOUSE - Football Video Highlights Recognition
 
 ## Progetto a cura di Fabrizio Zavanone e Jacopo Favaro
 
