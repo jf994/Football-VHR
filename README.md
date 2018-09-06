@@ -167,3 +167,10 @@ Inserire nella cartella img/ tre cartelle. Le prime due dovranno chiamarsi come 
 Infine, da Anaconda prompt, raggiungere la cartella del progetto e digitare il seguente comando:
 
     python processing_video.py
+    
+### Output
+
+Il tool produce 3 tipi di output:
+* un video, copia dell'originale usato per l'analisi, nel quale sono presenti i bounding boxes di tutti i rilevamenti
+* un file json nella cartella json/, dove è presente una lista degli eventi taggati preceduti dalle informazioni inserite con gli input nei file formato .csv
+* un file txt nella cartella txt/, dove sono presenti le stesse informazioni del file formato json ma in formato più fruibile
