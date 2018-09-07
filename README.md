@@ -13,7 +13,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 * Python 3.6
 * Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
-* Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0 ed almeno una GPU GTX 1050ti: tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)). Nel caso la procedura di installazione di Tensorflow creassse problemi, usare il comando:
+* Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0 ed almeno una GPU GTX 1050ti: seguire il tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)). Nel caso la procedura di installazione di Tensorflow creassse problemi, usare il comando:
     ```
     from pip._internal import main
     main(['install', 'tensorflow'])
