@@ -11,19 +11,25 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 ### Dipendenze
 
-* Python 3.6. Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
-* Tensorflow (tutorial per la versione GPU [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s))
-* openCV ([qui](https://www.lfd.uci.edu/~gohlke/pythonlibs/))
-* Eseguire, da Anaconda prompt, i comandi `pip install face_recognition` e `pip install cmake`
+* Python 3.6
+* Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
+* Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0 ed almeno una GPU GTX 1050ti: tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)). Nel caso la procedura di installazione di Tensorflow ceassse problemi, usare il comando:
+    ```
+    from pip._internal import main
+    main(['install', 'tensorflow'])
+    ```
+* openCV versione 3.4.2 tramite `pip install opencv-python==3.4.2`
+* face_recognition versione 1.2.2 tramite `pip install face_recognition==1.2.2`
+* cmake versione 3.12.0 tramite `pip install cmake==3.12.0`
 * Microsoft Visual C++ 14.0 (Build tool)
 
 ### Come iniziare
 
-* Installare con pip darkflow globalmente, usando il comando
+* Installare con pip darkflow globalmente, usando questo comando da dentro la cartella del progetto
     ```
     pip install -e .
     ```
-* Cercare su internet il file `tiny-yolo-voc.weights`
+* Scaricare i pesi per la rete [qui](https://github.com/leetenki/YOLOtiny_v2_chainer/blob/master/tiny-yolo-voc.weights)
 * Creare, nella root della repository, una cartella bin ed inserirvi questo file
     
 ### Preparazione nuovo modello
