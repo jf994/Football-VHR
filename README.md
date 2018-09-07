@@ -21,6 +21,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 * openCV versione 3.4.2 tramite `pip install opencv-python==3.4.2`
 * face_recognition versione 1.2.2 tramite `pip install face_recognition==1.2.2`
 * cmake versione 3.12.0 tramite `pip install cmake==3.12.0`
+* setuptools versione 39.1.0 tramite `pip install setuptools==39.1.0`
 * Microsoft Visual C++ 14.0 (Build tool)
 
 ### Come iniziare
