@@ -11,6 +11,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 ### Come iniziare
 
+* Scaricare la repository
 * Installare Anaconda per Python 3.6(tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg)).
 * Installare con pip darkflow globalmente, usando questo comando da dentro la cartella del progetto
     ```
