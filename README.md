@@ -11,6 +11,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 ### Come iniziare
 
+* Installare Anaconda per Python 3.6(tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg)).
 * Installare con pip darkflow globalmente, usando questo comando da dentro la cartella del progetto
     ```
     pip install -e .
@@ -20,7 +21,6 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 
 ### Set-up
 
-* Anaconda per Python 3.6(tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg)).
 * Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0: seguire il tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)).
 * openCV versione 3.4.2.17 tramite `pip install opencv-python==3.4.2.17`.
 * cmake versione 3.12.0 tramite `pip install cmake==3.12.0`.
