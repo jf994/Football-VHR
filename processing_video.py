@@ -42,10 +42,10 @@ option = {
     'gpu': 1.0
 }
 
-scale_value = temp_opt[4] # valore di riduzione per scalare l'immagine temp_opt[4] volte nell'analisi volti
+scale_value = int(temp_opt[4])  # valore di riduzione per scalare l'immagine temp_opt[4] volte nell'analisi volti
 frame_rate_originale = int(temp_opt[3])
 capture = cv2.VideoCapture(str(temp_opt[0]))
-width = round(capture.get(3)) # larghezza del frame
+width = round(capture.get(3))  # larghezza del frame
 height = round(capture.get(4))  # altezza del frame (usata per settare la posizione del valore degli FPS)
 tfnet = TFNet(option)
 #out = cv2.VideoWriter('output.mp4', 0x00000021, float(frame_rate_originale), (width, height))  # file video da salvare in output
