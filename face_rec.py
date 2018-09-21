@@ -23,10 +23,10 @@ def get_names_from_image(team):
         known_face_names.append(os.path.splitext(image_file)[0].split('/')[2])
 
 # la funzione cerca le facce nella scena
-def get_faces(frame, face_in_scene):
+def get_faces(frame, face_in_scene, scale_value):
 
     # faccio il resize del frame del video ad 1/8 della sua grandezza per ottenere una maggiore velocità di analisi
-    small_frame = cv2.resize(frame, (0, 0), fx=0.125, fy=0.125)
+    small_frame = cv2.resize(frame, (0, 0), fx=(1/scale_value), fy=(1/scale_value))
 
     # converto l'immagine da bgr ad rgb
     rgb_small_frame = small_frame[:, :, ::-1]
@@ -53,10 +53,10 @@ def get_faces(frame, face_in_scene):
     for (top, right, bottom, left), name in zip(face_locations, face_names):
         if (name != 'Person'):
             # ingrandisco le dimensioni delle facce di 8 volte...
-            top *= 8
-            right *= 8
-            bottom *= 8
-            left *= 8
+            top *= scale_value
+            right *= scale_value
+            bottom *= scale_value
+            left *= scale_value
 
             # ...e disegno un bounding box intorno alla faccia
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)

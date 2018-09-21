@@ -105,7 +105,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
 Modificare il file `options.csv` inserendo i seguenti dati separati da virgola:
 
 
-    path relativo del video desiderato, threshold per darknet (valore tra zero e uno, l'analisi è stata testata per 0.55), numero checkpoint raggiunto durante il training (l'ultimo creatosi nella cartella ckpt), framerate del video originale
+    path relativo del video desiderato, threshold per darknet (valore tra zero e uno, l'analisi è stata testata per 0.55), numero checkpoint raggiunto durante il training (l'ultimo creatosi nella cartella ckpt), framerate del video originale, fattore di riduzione per l'analisi dei volti (il frame viene ridotto come 1/fattore)
 
 Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 

@@ -42,13 +42,13 @@ option = {
     'gpu': 1.0
 }
 
-
+scale_value = temp_opt[4] # valore di riduzione per scalare l'immagine temp_opt[4] volte nell'analisi volti
 frame_rate_originale = int(temp_opt[3])
 capture = cv2.VideoCapture(str(temp_opt[0]))
 width = round(capture.get(3)) # larghezza del frame
 height = round(capture.get(4))  # altezza del frame (usata per settare la posizione del valore degli FPS)
 tfnet = TFNet(option)
-out = cv2.VideoWriter('output.mp4', 0x00000021, float(frame_rate_originale), (width, height))  # file video da salvare in output
+#out = cv2.VideoWriter('output.mp4', 0x00000021, float(frame_rate_originale), (width, height))  # file video da salvare in output
 
 # variabili golbali
 last_tag_time = 0  # contiene il time dell'ultimo cartellino
@@ -103,7 +103,7 @@ print("Done.")
 # set e stampa variabile controllo del tempo
 start_time = datetime.datetime.now()  # contiene l'oggetto datetime di comparsa del cartellone per calcolo del tempo
 print("Start time: ", str(start_time).split('.')[0])
-
+print("Analysis running...")
 # inizio loop principale per analisi video che continua sino a che il video non finisce o viene forzatamente interrotto
 while(capture.isOpened()):
     stime = time.time()  # variabile utile al calcolo degli fps
@@ -113,7 +113,7 @@ while(capture.isOpened()):
     if ret:
         # controllo le facce ogni 3 frame
         if(temp_num_frame % 3 == 0):
-            frame = get_faces(frame, face_in_scene)
+            frame = get_faces(frame, face_in_scene, scale_value)
         # ogni 2 secondi controllo la scena e il risultato
         if(temp_num_frame == (frame_rate_originale * 2)):
             # calcolo ratio e variazione valori RGB per controllare cambio scena
@@ -343,10 +343,11 @@ while(capture.isOpened()):
         fps = 1 / (time.time() - stime)
         num_frame += 1
         temp_num_frame += 1
+        # mostro l'analisi video in diretta
         frame = cv2.putText(frame, 'FPS {:.1f}'.format(fps), (5, height-10), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
-
         cv2.imshow('frame', frame)  # dopo aver modificato il frame nell'analisi, lo mostro a video
-        out.write(frame)  # 'stampo' il frame sul video che sto esportando
+
+        #out.write(frame)  # 'stampo' il frame sul video che sto esportando
         # se sono passati almeno 5 secondi dall'utlimo cartellino salvato...
         if (time.time() - last_tag_time) > 5:
             # ...se la sicurezza è maggiore del threshold stabilito e ho contato sino a 5...
@@ -383,6 +384,7 @@ while(capture.isOpened()):
 
         # chiamo la funzione che genera gli output e la distruzione delle finestre
         match.json_and_txt_create()
+        print("Analysis ended.")
         capture.release()
         cv2.destroyAllWindows()
         break
