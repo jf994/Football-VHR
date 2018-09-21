@@ -7,22 +7,7 @@
 
 ### Intro
 
-Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. [Qui](https://github.com/jf994/Football-VHR/blob/master/docs/Studio%20di%20fattibilità%20per%20un%20sistema%20di%20highlights%20automatici%20di%20una%20partita%20di%20calcio.pdf) si può trovare il report che riassume il lavoro da noi svolto.
-
-### Dipendenze
-
-* Python 3.6
-* Anaconda (tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg))
-* Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0 ed almeno una GPU GTX 1050ti: seguire il tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)). Nel caso la procedura di installazione di Tensorflow creassse problemi, usare il comando:
-    ```
-    from pip._internal import main
-    main(['install', 'tensorflow'])
-    ```
-* openCV versione 3.4.2 tramite `pip install opencv-python==3.4.2`
-* face_recognition versione 1.2.2 tramite `pip install face_recognition==1.2.2`
-* cmake versione 3.12.0 tramite `pip install cmake==3.12.0`
-* setuptools versione 39.1.0 tramite `pip install setuptools==39.1.0`
-* Microsoft Visual C++ 14.0 (Build tool)
+Sistema di estrapolazione di informazioni da un video di una partita di calcio con layout sky del mondiale 2006. [Qui](https://github.com/jf994/Football-VHR/blob/master/docs/Studio%20di%20fattibilità%20per%20un%20sistema%20di%20highlights%20automatici%20di%20una%20partita%20di%20calcio.pdf) si può trovare il report che riassume il lavoro da noi svolto. E' bene tenere a mente, leggendo questo documento, che il lavoro è stato svolto su una macchina dotata di GPU NVIDIA GTX 1050 e quindi le successive informazioni potrebbero non portare allo stesso risultato cambiando modello. Verranno comunque fornite istruzioni per l'installazione su una macchina con GPU differente (esempio GTX980).
 
 ### Come iniziare
 
@@ -32,7 +17,21 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
     ```
 * Scaricare i pesi per la rete [qui](https://github.com/leetenki/YOLOtiny_v2_chainer/blob/master/tiny-yolo-voc.weights)
 * Creare, nella root della repository, una cartella bin ed inserirvi questo file
-    
+
+### Set-up
+
+* Anaconda per Python 3.6(tutorial d'installazione [qui](https://www.youtube.com/watch?v=T8wK5loXkXg)).
+* Tensorflow (CUDA Toolkit versione 8.0, CuDNN versione 6.0: seguire il tutorial [qui](https://www.youtube.com/watch?v=RplXYjxgZbw&t=91s)).
+* openCV versione 3.4.2.17 tramite `pip install opencv-python==3.4.2.17`.
+* cmake versione 3.12.0 tramite `pip install cmake==3.12.0`.
+* face_recognition versione 1.2.2 tramite `pip install face_recognition==1.2.2`.
+* setuptools versione 39.1.0 tramite `pip install setuptools==39.1.0`.
+* Microsoft Visual C++ 14.0 (Build tool).
+* msgpack versione 0.5.6 tramite `pip install msgpack==0.5.6`.
+* numpy versione 1.14.0 tramite `pip install numpy==1.14.0`.
+* tensorflow versione 1.4.0 tramite `pip install tensorflow==1.4.0`.
+* tensorflow-gpu versione 1.9.0 tramite `pip install tensorflow-gpu==1.9.0`. **ATTENZIONE:**questo specifico pacchetto ha problemi di compatibilità a seconda della GPU utilizzata, ad esempio, per una GTX 980 utilizzare la versione 1.3.0rc1 installabile tramite `pip install tensorflow-gpu==1.3.0rc1`.
+ 
 ### Preparazione nuovo modello
 
 Nella cartella img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
