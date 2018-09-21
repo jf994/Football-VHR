@@ -30,7 +30,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
 * msgpack versione 0.5.6 tramite `pip install msgpack==0.5.6`.
 * numpy versione 1.14.0 tramite `pip install numpy==1.14.0`.
 * tensorflow versione 1.4.0 tramite `pip install tensorflow==1.4.0`.
-* tensorflow-gpu versione 1.9.0 tramite `pip install tensorflow-gpu==1.9.0`. **ATTENZIONE:**questo specifico pacchetto ha problemi di compatibilità a seconda della GPU utilizzata, ad esempio, per una GTX 980 utilizzare la versione 1.3.0rc1 installabile tramite `pip install tensorflow-gpu==1.3.0rc1`.
+* tensorflow-gpu versione 1.9.0 tramite `pip install tensorflow-gpu==1.9.0`. **ATTENZIONE:** questo specifico pacchetto ha problemi di compatibilità a seconda della GPU utilizzata, ad esempio, per una GTX 980 utilizzare la versione 1.3.0rc1 installabile tramite `pip install tensorflow-gpu==1.3.0rc1`.
  
 ### Preparazione nuovo modello
 
