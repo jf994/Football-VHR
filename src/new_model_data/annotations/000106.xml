@@ -1,0 +1,22 @@
+<annotation>
+  <folder>cards_images</folder>
+  <filename>000106.png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>660</width>
+    <height>228</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>yellow_card</name>
+    <pose>Frontal</pose>
+    <truncated>0</truncated>
+    <difficult>1</difficult>
+    <bndbox>
+      <xmin>348</xmin>
+      <ymin>0</ymin>
+      <xmax>404</xmax>
+      <ymax>61</ymax>
+    </bndbox>
+  </object>
+</annotation>

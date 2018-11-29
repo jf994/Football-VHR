@@ -1,0 +1,22 @@
+<annotation>
+  <folder>cards_images</folder>
+  <filename>000184.png</filename>
+  <segmented>0</segmented>
+  <size>
+    <width>1200</width>
+    <height>775</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>red_card</name>
+    <pose>Frontal</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>311</xmin>
+      <ymin>29</ymin>
+      <xmax>531</xmax>
+      <ymax>180</ymax>
+    </bndbox>
+  </object>
+</annotation>
