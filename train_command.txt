@@ -1,3 +1,0 @@
-python flow --model cfg/tiny-yolo-voc-2c.cfg --load bin/tiny-yolo-voc.weights --train --annotation new_model_data/annotations --dataset new_model_data/train_images --gpu 1.0 --epoch 600
-
-#per caricare il training da un determinato punto dopo load mettere il numero del checkpoint desiderato

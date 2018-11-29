@@ -1,1 +1,0 @@
-python flow --model cfg/tiny-yolo-voc-1c.cfg --load numero_ultimo_checkpoint --threshold 0.15 --demo video.mp4 --gpu 1.0 --saveVideo
