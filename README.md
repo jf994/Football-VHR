@@ -18,7 +18,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
     pip install -e .
     ```
 * Scaricare i pesi per la rete [qui](https://github.com/leetenki/YOLOtiny_v2_chainer/blob/master/tiny-yolo-voc.weights)
-* Creare, nella root della repository, una cartella bin ed inserirvi questo file
+* Creare, all'interno di src/, una cartella bin ed inserirvi questo file
 
 ### Set-up
 
@@ -35,9 +35,9 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
  
 ### Preparazione nuovo modello
 
-Nella cartella img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
+Nella cartella src/img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
 
-La cartella creatasi con le immagini deve essere spostata in img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
+La cartella creatasi con le immagini deve essere spostata in src/img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
 Tale cartella deve essere poi essere trasferita in new_model_data, per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draw_box.py` (modificare il contenuto dello script secondo necessità per includere le classi desiderate).
 
 Un video tutorial su cui ci siamo basati per questo progetto può essere trovato [qui](https://www.youtube.com/watch?v=Fwcbov4AzQo&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM&index=6) e nel [successivo](https://www.youtube.com/watch?v=2XznLUgj1mg&index=7&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM).
@@ -46,7 +46,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
 
 *Le informazioni seguenti assumono che si voglia utilizzare tiny YOLO e il dataset contenga 2 classi*
 
-1. Creare una copia del configuration file `tiny-yolo-voc.cfg` e rinominarlo seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg`, dove il 2c sta per 2 classi. E' importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per successive modifiche, vedi spiegazione successiva.
+1. Creare, all'interno della cartella src/cfg/, una copia del configuration file `tiny-yolo-voc.cfg` e rinominarlo seguendo le proprie preferenze `tiny-yolo-voc-2c.cfg`, dove il 2c sta per 2 classi. E' importante lasciare il file originale `tiny-yolo-voc.cfg` invariato per successive modifiche, vedi spiegazione successiva.
 
 2. In `tiny-yolo-voc-2c.cfg`, modificare il numero classes nel layer [region] (l'ultimo layer) facendolo corrispondere al numero di classi sulle quali si sta per trainare la rete (nel nostro caso 2):
     
@@ -83,13 +83,13 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     ...
     ```
 
-4. Cambiare `labels.txt` per includere i label sui quali si desidera trainare la rete (il numero dei label deve essere lo stesso del numero delle classi settate nel file `tiny-yolo-voc-2c.cfg`). Nel nostro caso, `labels.txt` conterrà 2 label:
+4. Modificare, all'interno di src/, `labels.txt` per includere i label sui quali si desidera trainare la rete (il numero dei label deve essere lo stesso del numero delle classi settate nel file `tiny-yolo-voc-2c.cfg`). Nel nostro caso, `labels.txt` conterrà 2 label:
 
     ```
     label1
     label2
     ```
-5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg`, eseguendo il seguente comando:
+5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg`, eseguendo da terminale il seguente comando (al livello della cartella src/):
 
     `python flow --model cfg/tiny-yolo-voc-2c.cfg --load bin/tiny-yolo-voc.weights --train --annotation new_model_data/annotations --dataset new_model_data/train_images --gpu 1.0 --epoch 600`
     
@@ -119,11 +119,11 @@ Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 * riga 3 rappresenta le coordinate Xmin e Xmax del punteggio della squadra di casa
 * riga 4 rappresenta le coordinate Xmin e Xmax del punteggio della squadra ospite
 
-Modificare nella cartella oologic il file `template.csv` inserendo i seguenti dati separati da virgola:
+Modificare nella cartella src/oologic il file `template.csv` inserendo i seguenti dati separati da virgola:
 
     data espressa nel formato AAMMGG, sport, campionato, numero partita
 
-Modificare, nella cartella oologic, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
+Modificare, nella cartella src/oologic, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
 
 
     Italy
@@ -163,15 +163,15 @@ ATTENZIONE: l'ordine degli elementi del file non è casuale e deve essere rispet
 Per ogni giocatore dovrà essere specificato: Cognome giocatore, numero, ruolo, colore maglia, valore booleano (True se è capitano False altrimenti).
 La stessa procedura dovrà essere ripetuta per la squadra ospite.
 
-Modificare, nella cartella oologic, il file csv `match.csv` inserendo i seguenti dati:
+Modificare, nella cartella src/oologic, il file csv `match.csv` inserendo i seguenti dati:
 
     nome del file csv creato per la squadra di casa, nome del file csv creato per la squadra ospite
     Cognome arbitro, REF, Colore Maglia
 
     
-Inserire nella cartella img/ tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per ogni giocatore e l'allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
+Inserire nella cartella src/img/ tre cartelle. Le prime due dovranno chiamarsi come la squadra di riferimento è stata chiamata nel file csv e dovranno altresì contenere un'immagine per ogni giocatore e l'allenatore presente nel suddetto csv. Le immagini dovranno inoltre rispettare la nomenclatura sin ora seguita nel file. L'ultima cartella dovra chiamarsi 'Ref' e contenere un'immagine per l'arbitro denominata come spiegato in precedenza.
 
-Infine, da Anaconda prompt, raggiungere la cartella del progetto e digitare il seguente comando:
+Infine, da Anaconda prompt, raggiungere la cartella src/ del progetto e digitare il seguente comando:
 
     python processing_video.py
     
