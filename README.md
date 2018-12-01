@@ -18,7 +18,7 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
     pip install -e .
     ```
 * Scaricare i pesi per la rete [qui](https://github.com/leetenki/YOLOtiny_v2_chainer/blob/master/tiny-yolo-voc.weights)
-* Creare, all'interno di src/, una cartella bin ed inserirvi questo file
+* Creare, all'interno di src/, una cartella "bin" ed inserirvi questo file
 
 ### Set-up
 
@@ -35,9 +35,9 @@ Sistema di estrapolazione di informazioni da un video di una partita di calcio c
  
 ### Preparazione nuovo modello
 
-Nella cartella src/img_download/google_images_download sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
+Nella cartella src/img_download/google_images_download/ sono presenti i file necessari per eseguire uno script python che permette di scaricare immagini in buona risoluzione da google (rifarsi al readme presente nella cartella).
 
-La cartella creatasi con le immagini deve essere spostata in src/img_download/google_images_download/downloads e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
+La cartella creatasi con le immagini deve essere spostata in src/img_download/google_images_download/downloads/ e le immagini scaricate devono poi essere rinominate tramite lo script `rename.py`, ivi presente, che le sposterà, rinominandole, nella cartella train_images.
 Tale cartella deve essere poi essere trasferita in new_model_data, per essere utilizzata al fine di generare le annotazioni attraverso l'esecuzione dello script `draw_box.py` (modificare il contenuto dello script secondo necessità per includere le classi desiderate).
 
 Un video tutorial su cui ci siamo basati per questo progetto può essere trovato [qui](https://www.youtube.com/watch?v=Fwcbov4AzQo&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM&index=6) e nel [successivo](https://www.youtube.com/watch?v=2XznLUgj1mg&index=7&list=PLX-LrBk6h3wSGvuTnxB2Kj358XfctL4BM).
@@ -89,7 +89,7 @@ Un video tutorial su cui ci siamo basati per questo progetto può essere trovato
     label1
     label2
     ```
-5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg`, eseguendo da terminale il seguente comando (al livello della cartella src/):
+5. Al momento di trainare rimanda al modello `tiny-yolo-voc-2c.cfg`, eseguendo da Anaconda prompt il seguente comando (al livello della cartella src/):
 
     `python flow --model cfg/tiny-yolo-voc-2c.cfg --load bin/tiny-yolo-voc.weights --train --annotation new_model_data/annotations --dataset new_model_data/train_images --gpu 1.0 --epoch 600`
     
@@ -119,11 +119,11 @@ Modificare il file `crops_value.csv` inserendo i seguenti dati come mostrato:
 * riga 3 rappresenta le coordinate Xmin e Xmax del punteggio della squadra di casa
 * riga 4 rappresenta le coordinate Xmin e Xmax del punteggio della squadra ospite
 
-Modificare nella cartella src/oologic il file `template.csv` inserendo i seguenti dati separati da virgola:
+Modificare nella cartella src/oologic/ il file `template.csv` inserendo i seguenti dati separati da virgola:
 
     data espressa nel formato AAMMGG, sport, campionato, numero partita
 
-Modificare, nella cartella src/oologic, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
+Modificare, nella cartella src/oologic/, il file csv relativo alla squadra di casa e chiamarlo nomesquadracasa.csv, inserendo i dati come mostrato nel file di dimostrazione `italy.csv` :
 
 
     Italy
@@ -163,7 +163,7 @@ ATTENZIONE: l'ordine degli elementi del file non è casuale e deve essere rispet
 Per ogni giocatore dovrà essere specificato: Cognome giocatore, numero, ruolo, colore maglia, valore booleano (True se è capitano False altrimenti).
 La stessa procedura dovrà essere ripetuta per la squadra ospite.
 
-Modificare, nella cartella src/oologic, il file csv `match.csv` inserendo i seguenti dati:
+Modificare, nella cartella src/oologic/, il file csv `match.csv` inserendo i seguenti dati:
 
     nome del file csv creato per la squadra di casa, nome del file csv creato per la squadra ospite
     Cognome arbitro, REF, Colore Maglia
@@ -179,5 +179,5 @@ Infine, da Anaconda prompt, raggiungere la cartella src/ del progetto e digitare
 
 Il tool produce 3 tipi di output:
 * un video, copia dell'originale usato per l'analisi, nel quale sono presenti i bounding boxes di tutti i rilevamenti
-* un file json nella cartella json/, dove è presente una lista degli eventi taggati preceduti dalle informazioni inserite con gli input nei file formato .csv
-* un file txt nella cartella txt/, dove sono presenti le stesse informazioni del file formato json ma in formato più fruibile
+* un file json nella cartella src/json/, dove è presente una lista degli eventi taggati preceduti dalle informazioni inserite con gli input nei file formato .csv
+* un file txt nella cartella src/txt/, dove sono presenti le stesse informazioni del file formato json ma in formato più fruibile
